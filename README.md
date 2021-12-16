@@ -38,9 +38,9 @@ DiskDirCrc also calculates the CRC of the files and writes them into the index f
 
 Download and resources
 ======================
-I recommend checking first [DiskDirCrc](https://github.com/moisescastellano/diskdircrc-tcplugin).
+I recommend checking first [DiskDirCrc](https://github.com/moisescastellano/diskdircrc-tcplugin), my own TC java plugin.
 
-You can download from [totalcmd.net](http://totalcmd.net/plugring/tc_java_64bits.html)
+You can download the java plugin interface from [totalcmd.net](http://totalcmd.net/plugring/tc_java_64bits.html)
 
 Also check the original [Java Plugin interface from Ken Handel](http://totalcmd.net/plugring/tc_java.html)
 

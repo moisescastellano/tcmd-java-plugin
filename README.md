@@ -52,9 +52,10 @@ Contact
 =======
 Let me know if you have any comment, suggestion or problem regarding this java plugin, 
 choose the most appropiate way to contact me:
- - [the forum thread](https://www.ghisler.ch/board/viewtopic.php?t=75726)
+ - [this thread in the Total Commander forum](https://www.ghisler.ch/board/viewtopic.php?t=75726)
  - email: moises.castellano (at) gmail.com
  - [Github Java plugin interface project](https://github.com/moisescastellano/tcmd-java-plugin/issues)
+
 Please detail the specific java plugin and JRE version you are using.
 
 Disclaimer

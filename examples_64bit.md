@@ -17,11 +17,11 @@ Now, every java plugin work as an independent (no need to install javalib.tgz) 6
 | Plugin Type | Plugin Download | Version | File Extensions | Description | 64-bit update comment (2021) |
 | --- | --- | --- | --- | --- | --- |
 | **Demo Plugins**
-| Lister plugin | Swing Demo | [2.1 (32/64 bits)](https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/SwingDemo.zip.zip) | *.swing | The popular JFC Applet [SwingSet2](http://java.sun.com/products/plugin/1.5.0/demos/plugin/applets.html) | 64-bit version works fine |
+| Lister plugin | Swing Demo | [2.1 (32/64 bits)](https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/SwingDemo.zip) | *.swing | The popular JFC Applet [SwingSet2](http://java.sun.com/products/plugin/1.5.0/demos/plugin/applets.html) | 64-bit version works fine |
 | Lister plugin | SWT Demo | [1.7 (32 bits)](http://java.totalcmd.net/V1.7/SWTDemo.tgz) | *.swt | The Eclipse Demo Control Example | SWT based plugins need corresponding 64-bit libraries. I have installed them, yet these plugins dont work. In progress... |
 | **Multimedia Plugins**
 | Lister plugin | Audio Player | [2.1 (32/64 bits)](https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/JLGui.zip) | *.mp3, *.mpeg, *.flac, *.ape,  <br>*.mac, *.ogg, *.spx | Winamp Clone in Java [JLGui](http://sourceforge.net/projects/jlgui/) |     |
-| Lister plugin | Video Player | [2.1 (32/64 bits)](https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/%20VideoPlayer.zip) | *.mpg, *.mpeg, *.mov, *.avi | Java Video Player. (Deprecated: For this plugin you have to install first [Java Media Framework](http://java.sun.com/products/java-media/jmf/downloads/index.html)) | 64-bit version works fine. I don't even needed to install JMF. It shows exception when starting, but then videos are shown correctly |
+| Lister plugin | Video Player | [2.1 (32/64 bits)](https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/VideoPlayer.zip) | *.mpg, *.mpeg, *.mov, *.avi | Java Video Player. (Deprecated: For this plugin you have to install first [Java Media Framework](http://java.sun.com/products/java-media/jmf/downloads/index.html)) | 64-bit version works fine. I don't even needed to install JMF. It shows exception when starting, but then videos are shown correctly |
 | **Java Development**
 | Lister plugin | Java Decompiler | [2.1 (32/64 bits)](https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/JADDemo.zip) | *.class, *.java | Uses [JAD](http://www.kpdus.com/jad.html) to decompile class files (supports syntax highlighting and context menu) | 64-bit version works fine. Decompiler (jad.exe) is included so you do not need to install it |
 | **Fans of good old C-64**

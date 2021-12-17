@@ -14,34 +14,192 @@ DiskDirCrc also calculates the CRC of the files and writes them into the index f
 
 Now, every java plugin work as an independent (no need to install javalib.tgz) 64-bit plugin in TC64\. They still work in TC32. See the 64-bit update comment (2021) All samples by Handel have been cleaned from extra libraries, repackaged and are available at he links below.
 
-| Plugin Type | Plugin Download | Version | File Extensions | Description | 64-bit update comment (2021) |
-| --- | --- | --- | --- | --- | --- |
-| Demo Plugins<br>------------ |     |     |     |     |     |
-| Lister plugin | Swing Demo | [2.1 (32/64 bits)](https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/SwingDemo.zip.zip) | *.swing | The popular JFC Applet [SwingSet2](http://java.sun.com/products/plugin/1.5.0/demos/plugin/applets.html) | 64-bit version works fine |
-| Lister plugin | SWT Demo | [1.7 (32 bits)](http://java.totalcmd.net/V1.7/SWTDemo.tgz) | *.swt | The Eclipse Demo Control Example | SWT based plugins need corresponding 64-bit libraries. I have installed them, yet these plugins dont work. In progress... |
-| Multimedia Plugins<br>------------------ |     |     |     |     |     |
-| Lister plugin | Audio Player | [2.1 (32/64 bits)](https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/JLGui.zip) | *.mp3, *.mpeg, *.flac, *.ape,  <br>*.mac, *.ogg, *.spx | Winamp Clone in Java [JLGui](http://sourceforge.net/projects/jlgui/) |     |
-| Lister plugin | Video Player | [2.1 (32/64 bits)](https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/%20VideoPlayer.zip) | *.mpg, *.mpeg, *.mov, *.avi | Java Video Player. (Deprecated: For this plugin you have to install first [Java Media Framework](http://java.sun.com/products/java-media/jmf/downloads/index.html)) | 64-bit version works fine. I don't even needed to install JMF. It shows exception when starting, but then videos are shown correctly |
-| Java Developement<br>----------------- |     |     |     |     |     |
-| Lister plugin | Java Decompiler | [2.1 (32/64 bits)](https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/JADDemo.zip) | *.class, *.java | Uses [JAD](http://www.kpdus.com/jad.html) to decompile class files (supports syntax highlighting and context menu) | 64-bit version works fine. Decompiler (jad.exe) is included so you do not need to install it |
-| Fans of good old C-64<br>--------------------- |     |     |     |     |     |
-| Packer plugin | D64 disk image viewer | [2.1 (32/64 bits)](https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/DirCBM.zip) | *.d64 | Java version of [DIRCBM](http://www.totalcmd.net/plugring/DIRCBM.html) | 64-bit works fine for unpackaging. For packaging, it throws an exception, BUT this also happens in the 32-bit version: DirCBM was ever only able to \*show\* the contents of C64 disk images |
-| Lister plugin | CBM 6510 Disassembler | [1.7 (32 bits)](http://java.totalcmd.net/V1.7/CBM6502.TGZ) | *.prg | Disassemble CBM 6510 machine code instructions | SWT based plugins need corresponding 64-bit libraries. I have installed them, yet these plugins dont work. In progress... |
-| Lister plugin | C64 SID player | [2.1 (32/64 bits)](https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/JSid.zip) | *.sid, *.psid | Uses [JSIDPlay](http://www.jac64.com/) of the Java emulator JAC64 to play C64 sound files |     |
-| Graphics<br>-------- |     |     |     |     |     |
-| Lister plugin | 3D graphics model viewer | [2.1 (32/64 bits)](https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/3DDemo.zip) | *.3ds | Uses [Starfire Research](http://www.starfireresearch.com/services/java3d/inspector3ds.html)s Java 3D loader for the 3DS file format. For this plugin you have to install Java 3D | 64-bit version not tested. Java 3D is deprecated technology. |
-| Lister plugin | Image Viewer | [2.1 (32/64 bits)](https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/ImageViewer.zip) | *.bmp, *.ico, *.jp(e)g, *.gif, *.png | Image viewer using Java 2D | 64-bit version works fine |
-| Windows Application Integration (OLE based)<br>------------------------------------------- |     |     |     |     |     |
-| Lister plugin | OLE Viewer | [1.7 (32 bits)](http://java.totalcmd.net/V1.7/OLEDemo.tgz) | *.doc, *.rtf, *.xls, *.wmv, *.mpa, *.mp(e)g, *.avi, *.asf, *.wav, *.pdf | Uses Microsofts OLE interface | SWT based plugins need corresponding 64-bit libraries. I have installed them, yet these plugins dont work. In progress... |
-| Internet Access<br>--------------- |     |     |     |     |     |
-| Lister plugin | HTML Browser | [1.7 (32 bits)](http://java.totalcmd.net/V1.7/BrowserDemo.tgz) | *.html | Embeds Microsoft Internet Explorer | SWT based plugins need corresponding 64-bit libraries. I have installed them, yet these plugins dont work. However, who cares about IE? |
-| File system plugin | Email reader | [2.1 (32/64 bits)](https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/EMail.zip) |     | Check your email account, protocols pop3 and imap are supported |     |
-| Networking<br>---------- |     |     |     |     |     |
-| File system plugin | SNMP plugin | [2.1 (32/64 bits)](https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/SNMPplugin.zip) |     | Analyse network using SNMP (Simple Network Monitor Protocol), plugin author: Ján Gregor |     |
-| Plugin Developement Samples to Learn<br>------------------------------------ |     |     |     |     |     |
-| Packer plugin | File lister | [2.1 (32/64 bits)](https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/JCatalogue.zip) | *.jlst | Creates a file list and browse its contents | 64-bit version works fine |
-| Content plugin | Image Content | [2.1 (32/64 bits)](https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/ImageContent.zip) | *.bmp, *.ico, *.jp(e)g, *.gif, *.png | Shows image properties (width, height, bit-depth) - poor performance :-( |     |
-| Lister plugin | Hello World | [1.7 (32 bits)](http://java.totalcmd.net/V1.7/HelloWorld.tgz) | *.tst | Hello World: show java properties in a window | SWT based plugins need corresponding 64-bit libraries. I have installed them, yet these plugins dont work. In progress... |
-| File system plugin | Local Drives | [2.1 (32/64 bits)](https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/Drives.zip) |     | Browse your local file systems |     |
-| Content plugin | Content Demo | [2.1 (32/64 bits)](https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/ContentDemo.zip) | *.prg | Shows several test columns |     |
-
+		<table border="1">
+			<tbody><tr>
+				<th>Plugin Type</th>
+				<th>Plugin Download</th>
+				<th>Version</th>
+				<th>File Extensions</th>
+				<th>Description</th>
+				<th>64-bit update comment (2021)</th>
+			</tr>
+			<tr>
+				<th colspan="6"><h2>Demo Plugins</h2></th>
+			</tr>
+			<tr>
+				<td>Lister plugin</td>
+				<td><!-- a href="http://java.totalcmd.net/V1.7/SwingDemo.tgz" -->Swing Demo</td>
+				<td><a href="https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/SwingDemo.zip.zip">2.1 (32/64 bits)</a></td>
+				<td>*.swing</td>
+				<td>The popular JFC Applet <a href="http://java.sun.com/products/plugin/1.5.0/demos/plugin/applets.html">SwingSet2</a></td>
+				<td>64-bit version works fine</td>
+			</tr>
+			<tr>
+				<td>Lister plugin</td>
+				<td><!-- a href="http://java.totalcmd.net/V1.7/SWTDemo.tgz" -->SWT Demo</td>
+				<td><a href="http://java.totalcmd.net/V1.7/SWTDemo.tgz">1.7 (32 bits)</a></td>
+				<td>*.swt</td>
+				<td>The Eclipse Demo Control Example</td>
+				<td>SWT based plugins need corresponding 64-bit libraries. I have installed them, yet these plugins dont work. In progress...</td>
+			</tr>
+			<tr>
+				<th colspan="6"><h2>Multimedia Plugins</h2></th>
+			</tr>
+			<tr>
+				<td>Lister plugin</td>
+				<td><!-- a href="http://java.totalcmd.net/V1.7/JLGui.tgz" -->Audio Player</td>
+				<td><a href="https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/JLGui.zip">2.1 (32/64 bits)</a></td>
+				<td>*.mp3, *.mpeg, *.flac, *.ape,<br>*.mac, *.ogg, *.spx</td>
+				<td>Winamp Clone in Java <a href="http://sourceforge.net/projects/jlgui/">JLGui</a></td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>Lister plugin</td>
+				<td><!-- a href="http://java.totalcmd.net/V1.7/VideoPlayer.tgz" -->Video Player</td>
+				<td><a href="https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/ VideoPlayer.zip">2.1 (32/64 bits)</a></td>
+				<td>*.mpg, *.mpeg, *.mov, *.avi</td>
+				<td>Java Video Player. (Deprecated: For this plugin you have to install first <a href="http://java.sun.com/products/java-media/jmf/downloads/index.html">Java Media Framework</a>)</td>
+				<td>64-bit version works fine. I don't even needed to install JMF. It shows exception when starting, but then videos are shown correctly</td>
+			</tr>
+			<tr>
+				<th colspan="6"><h2>Java Developement</h2></th>
+			</tr>
+			<tr>
+				<td>Lister plugin</td>
+				<td><!-- a href="http://java.totalcmd.net/V1.7/JADDemo.tgz" -->Java Decompiler</td>
+				<td><a href="https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/JADDemo.zip">2.1 (32/64 bits)</a></td>
+				<td>*.class, *.java</td>
+				<td>Uses <a href="http://www.kpdus.com/jad.html">JAD</a> to decompile class files (supports syntax highlighting and context menu)</td>
+				<td>64-bit version works fine. Decompiler (jad.exe) is included so you do not need to install it</td>
+			</tr>
+			<tr>
+				<th colspan="6"><h2>Fans of good old C-64</h2></th>
+			</tr>
+			<tr>
+				<td>Packer plugin</td>
+				<td><!-- a href="http://java.totalcmd.net/V1.7/DirCBM.tgz" -->D64 disk image viewer</td>
+				<td><a href="https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/DirCBM.zip">2.1 (32/64 bits)</a></td>
+				<td>*.d64</td>
+				<td>Java version of <a href="http://www.totalcmd.net/plugring/DIRCBM.html">DIRCBM</a></td>
+				<td>64-bit works fine for unpackaging. For packaging, it throws an exception, BUT this also happens in the 32-bit version: DirCBM was ever only able to *show* the contents of C64 disk images</td>
+			</tr>
+			<tr>
+				<td>Lister plugin</td>
+				<td><!-- a href="http://java.totalcmd.net/V1.7/CBM6502.TGZ" -->CBM 6510 Disassembler</td>
+				<td><a href="http://java.totalcmd.net/V1.7/CBM6502.TGZ">1.7 (32 bits)</a></td>
+				<td>*.prg</td>
+				<td>Disassemble CBM 6510 machine code instructions</td>
+				<td>SWT based plugins need corresponding 64-bit libraries. I have installed them, yet these plugins dont work. In progress...</td>
+			</tr>
+			<tr>
+				<td>Lister plugin</td>
+				<td><!-- a href="http://java.totalcmd.net/V1.7/JSid.tgz" -->C64 SID player</td>
+				<td><a href="https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/JSid.zip">2.1 (32/64 bits)</a></td>
+				<td>*.sid, *.psid</td>
+				<td>Uses <a href="http://www.jac64.com/">JSIDPlay</a> of the Java emulator JAC64 to play C64 sound files</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th colspan="6"><h2>Graphics</h2></th>
+			</tr>
+			<tr>
+				<td>Lister plugin</td>
+				<td><!-- a href="http://java.totalcmd.net/V1.7/3DDemo.tgz" -->3D graphics model viewer</td>
+				<td><a href="https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/3DDemo.zip">2.1 (32/64 bits)</a></td>
+				<td>*.3ds</td>
+				<td>Uses <a href="http://www.starfireresearch.com/services/java3d/inspector3ds.html">Starfire Research</a>s Java 3D loader for the 3DS file format. For this plugin you have to install Java 3D</td>
+				<td>64-bit version not tested. Java 3D is deprecated technology.</td>
+			</tr>
+			<tr>
+				<td>Lister plugin</td>
+				<td><!-- a href="http://java.totalcmd.net/V1.7/ImageViewer.tgz" -->Image Viewer</td>
+				<td><a href="https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/ImageViewer.zip">2.1 (32/64 bits)</a></td>
+				<td>*.bmp, *.ico, *.jp(e)g, *.gif, *.png</td>
+				<td>Image viewer using Java 2D</td>
+				<td>64-bit version works fine</td>
+			</tr>
+			<tr>
+				<th colspan="6"><h2>Windows Application Integration (OLE based)</h2></th>
+			</tr>
+			<tr>
+				<td>Lister plugin</td>
+				<td><!-- a href="http://java.totalcmd.net/V1.7/OLEDemo.tgz" -->OLE Viewer</td>
+				<td><a href="http://java.totalcmd.net/V1.7/OLEDemo.tgz">1.7 (32 bits)</a></td>
+				<td>*.doc, *.rtf, *.xls, *.wmv, *.mpa, *.mp(e)g, *.avi, *.asf, *.wav, *.pdf</td>
+				<td>Uses Microsofts OLE interface</td>
+				<td>SWT based plugins need corresponding 64-bit libraries. I have installed them, yet these plugins dont work. In progress...</td>
+			</tr>
+			<tr>
+				<th colspan="6"><h2>Internet Access</h2></th>
+			</tr>
+			<tr>
+				<td>Lister plugin</td>
+				<td><!-- a href="http://java.totalcmd.net/V1.7/BrowserDemo.tgz" -->HTML Browser</td>
+				<td><a href="http://java.totalcmd.net/V1.7/BrowserDemo.tgz">1.7 (32 bits)</a></td>
+				<td>*.html</td>
+				<td>Embeds Microsoft Internet Explorer</td>
+				<td>SWT based plugins need corresponding 64-bit libraries. I have installed them, yet these plugins dont work. However, who cares about IE?</td>
+			</tr>
+			<tr>
+				<td>File system plugin</td>
+				<td><!-- a href="http://java.totalcmd.net/V1.7/EMail.tgz" -->Email reader</td>
+				<td><a href="https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/EMail.zip">2.1 (32/64 bits)</a></td>
+				<td>&nbsp;</td>
+				<td>Check your email account, protocols pop3 and imap are supported</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th colspan="6"><h2>Networking</h2></th>
+			</tr>
+			<tr>
+				<td>File system plugin</td>
+				<td><!-- a href="http://java.totalcmd.net/V1.7/SNMPplugin.tgz" -->SNMP plugin</td>
+				<td><a href="https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/SNMPplugin.zip">2.1 (32/64 bits)</a></td>
+				<td>&nbsp;</td>
+				<td>Analyse network using SNMP (Simple Network Monitor Protocol), plugin author: Ján Gregor</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th colspan="6"><h2>Plugin Developement Samples to Learn</h2></th>
+			</tr>
+			<tr>
+				<td>Packer plugin</td>
+				<td><!-- a href="http://java.totalcmd.net/V1.7/JCatalogue.tgz" -->File lister</td>
+				<td><a href="https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/JCatalogue.zip">2.1 (32/64 bits)</a></td>
+				<td>*.jlst</td>
+				<td>Creates a file list and browse its contents</td>
+				<td>64-bit version works fine</td>
+			</tr>
+			<tr>
+				<td>Content plugin</td>
+				<td><!-- a href="http://java.totalcmd.net/V1.7/ImageContent.tgz" -->Image Content</td>
+				<td><a href="https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/ImageContent.zip">2.1 (32/64 bits)</a></td>
+				<td>*.bmp, *.ico, *.jp(e)g, *.gif, *.png</td>
+				<td>Shows image properties (width, height, bit-depth) - poor performance :-(</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>Lister plugin</td>
+				<td><!-- a href="http://java.totalcmd.net/V1.7/HelloWorld.tgz" -->Hello World</td>
+				<td><a href="http://java.totalcmd.net/V1.7/HelloWorld.tgz">1.7 (32 bits)</a></td>
+				<td>*.tst</td>
+				<td>Hello World: show java properties in a window</td>
+				<td>SWT based plugins need corresponding 64-bit libraries. I have installed them, yet these plugins dont work. In progress...</td>
+			</tr>
+			<tr>
+				<td>File system plugin</td>
+				<td><!-- a href="http://java.totalcmd.net/V1.7/Drives.tgz" -->Local Drives</td>
+				<td><a href="https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/Drives.zip">2.1 (32/64 bits)</a></td>
+				<td>&nbsp;</td>
+				<td>Browse your local file systems</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>Content plugin</td>
+				<td><!-- a href="http://java.totalcmd.net/V1.7/ContentDemo.tgz" -->Content Demo</td>
+				<td><a href="https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/ContentDemo.zip">2.1 (32/64 bits)</a></td>
+				<td>*.prg</td>
+				<td>Shows several test columns</td>
+				<td>&nbsp;</td>
+			</tr>
+			</tbody></table>

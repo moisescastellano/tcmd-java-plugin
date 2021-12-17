@@ -2,7 +2,8 @@
 Things To do
 ============
 This is a work in progress. 
-I took in charge updating the Java Plugin by Ken Handel to 64-bit version in order to develop muy own [DiskDirCrc] java plugin.
+I took in charge updating the Java Plugin by Ken Handel to 64-bit version in order to develop muy own [DiskDirCrc](https://github.com/moisescastellano/diskdircrc-tcplugin) java plugin.
+
 
 Logging
 =======

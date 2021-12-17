@@ -16,6 +16,10 @@ As the license allows so, we have undertaken the project;
 special thanks to Ghisler (author of TC) for recompiling the dll.
 you can see the thread discussing it in [this thread of TC forum](https://www.ghisler.ch/board/viewtopic.php?t=75726)
 
+Java plugin examples
+====================
+Check the [list of java plugin examples](examples_64bit.hmlt)
+
 Now, every java plugin:
   1. Works as an independent 64-bit plugin in TC64. Still works in TC32.
   2. May be installed as usual, just entering the zip, without further ado.

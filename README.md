@@ -18,7 +18,7 @@ you can see the thread discussing it in [this thread of TC forum](https://www.gh
 
 Java plugin examples
 ====================
-Check the [list of java plugin examples](examples_64bit.html)
+Check the [list of java plugin examples](examples_64bit.md)
 
 Now, every java plugin:
   1. Works as an independent 64-bit plugin in TC64. Still works in TC32.

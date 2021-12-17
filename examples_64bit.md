@@ -38,7 +38,7 @@ Now, every java plugin work as an independent (no need to install javalib.tgz) 6
 | File system plugin | Email reader | [2.1 (32/64 bits)](https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/EMail.zip) |     | Check your email account, protocols pop3 and imap are supported |     |
 | **Networking**
 | File system plugin | SNMP plugin | [2.1 (32/64 bits)](https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/SNMPplugin.zip) |     | Analyse network using SNMP (Simple Network Monitor Protocol), plugin author: Ján Gregor |     |
-| **Plugin Development Samples to Learn
+| **Plugin Development Samples to Learn**
 | Packer plugin | File lister | [2.1 (32/64 bits)](https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/JCatalogue.zip) | *.jlst | Creates a file list and browse its contents | 64-bit version works fine |
 | Content plugin | Image Content | [2.1 (32/64 bits)](https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/ImageContent.zip) | *.bmp, *.ico, *.jp(e)g, *.gif, *.png | Shows image properties (width, height, bit-depth) - poor performance :-( |     |
 | Lister plugin | Hello World | [1.7 (32 bits)](http://java.totalcmd.net/V1.7/HelloWorld.tgz) | *.tst | Hello World: show java properties in a window | SWT based plugins need corresponding 64-bit libraries. I have installed them, yet these plugins dont work. In progress... |

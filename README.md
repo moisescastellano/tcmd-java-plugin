@@ -1,4 +1,4 @@
-# Java Plugin Interface 2.0 for Total Commander
+# Java Plugin Interface 2.1 for Total Commander
 
 This interface makes it possible to write Total Commander plugins (WLX, WFX, WDX and WCX) in Java.
 

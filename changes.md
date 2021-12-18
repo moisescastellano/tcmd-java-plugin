@@ -16,7 +16,7 @@ Changes for 64-bit version (from 32-bit original java plugin by Ken Handel):
 - included the javalib dirs: Now every Java plugin installs just entering the zip, without further ado
 - modified tc_javaplugin.ini accordingly (to refer the new location of javalib)
 - included text file with some extra info for the 64-version
-- repackaged as .zip (.tgz needs first to be untgzed to tar, also not so standard)
+- repackaged as .zip (.tgz needed first to be un-tgz-ed to tar, also not so standard)
 
 
 

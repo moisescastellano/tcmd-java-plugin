@@ -3,18 +3,13 @@
 This interface makes it possible to write Total Commander plugins (WLX, WFX, WDX and WCX) in Java.
 
 The original Java Plugin is Copyright (C) 2006-2007 Ken Handel: 
-he also provided a lot of [java plugin examples](http://java.totalcmd.net/V1.7/examples.html) for any kind: lister, packer, file system and content.
-
-[JCatalogue](http://wincmd.ru/files/9924387/JCatalogue.zip) is one of those examples updated to 64-bit.
+he also provided a lot of [java plugin examples](http://java.totalcmd.net/V1.7/examples.html) for any kind: lister, packer, file system and content, now [updated to 64-bit](https://github.com/moisescastellano/tcmd-java-plugin/blob/main/examples_64bit.md).
 
 However the developer abandoned the project in 2007 (now is 2021), and he has been unreachable since then (some people tried to reach him long ago). 64-bit versions of this plugin were no available, because as said the project was abandoned in 2007 and 64-bit tcmd came around 2011. That makes it unusable for most people, nowadays using 64-bit TC.
 
-64-bit version
-==============
-
 As the license allows so, we have undertaken the project;
-special thanks to Ghisler (author of TC) for recompiling the dll.
-you can see the thread discussing it in [this thread of TC forum](https://www.ghisler.ch/board/viewtopic.php?t=75726)
+special thanks to Ghisler (author of TC) for recompiling the dll:
+you can see the thread discussing it in [this thread of TC forum](https://www.ghisler.ch/board/viewtopic.php?t=75726).
 
 Java plugin examples
 ====================
@@ -24,13 +19,8 @@ Now, every java plugin:
   1. Works as an independent 64-bit plugin in TC64. Still works in TC32.
   2. May be installed as usual, just entering the zip, without further ado.
   
-Changes for 64-bit version (from 32-bit original java plugin by Ken Handel):
-============================================================================
-- included the new (wcx64 / wfx64 / wlx64 / wdx64) dll, recompiled by Ghisler (author of Total Commander), from Handel sources
-- included the javalib dirs: Now every Java plugin installs just entering the zip, without further ado
-- modified tc_javaplugin.ini accordingly (to refer the new location of javalib)
-- included this text file with some extra info for the 64-version
-- repackaged as .zip (.tgz needs first to be untgzed to tar, also not so standard)
+You can view the 
+[changes for 64-bit version](https://github.com/moisescastellano/tcmd-java-plugin/blob/main/changes.md) (from 32-bit original java plugin by Ken Handel)
 
 DiskDirCrc Total Commander plugin
 =================================
@@ -42,8 +32,6 @@ DiskDirCrc also calculates the CRC of the files and writes them into the index f
 
 Download and resources
 ======================
-I recommend checking first [DiskDirCrc](https://github.com/moisescastellano/diskdircrc-tcplugin), my own TC java plugin.
-
 You can download the java plugin interface from [totalcmd.net](http://totalcmd.net/plugring/tc_java_64bits.html)
 
 Also check the original [Java Plugin interface from Ken Handel](http://totalcmd.net/plugring/tc_java.html)

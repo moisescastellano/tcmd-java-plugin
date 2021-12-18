@@ -1,8 +1,8 @@
-# Java Plugins
+# Java Plugin examples
 
 The plugin archives are installed automatically, when the .zip is entered or double clicked in Total Commander. Each plugin has a README.TXT with additional notes and included source code in each *.jar file.
 
-# DiskDirCrc
+## DiskDirCrc
 
 [DiskDirCrc](https://github.com/moisescastellano/diskdircrc-tcplugin) is the first java plugin of my own.
 
@@ -10,11 +10,16 @@ As the original DiskDir plugin, DiskDirCrc creates a list file with all selected
 
 DiskDirCrc also calculates the CRC of the files and writes them into the index file. CRC is an error-detecting code commonly used in digital storage devices to detect accidental changes to data. DiskDirCrc can then check (Alt+Shift+F9) the integrity of files comparing the CRC in the list.
 
-# Original examples by Ken Handel
+## Original examples by Ken Handel
 
-Now, every java plugin work as an independent (no need to install javalib.tgz) 64-bit plugin in TC64\. They still work in TC32. See the 64-bit update comment (2021) All samples by Handel have been cleaned from extra libraries, repackaged and are available at he links below.
+Now, every java plugin work as an independent (no need to install javalib.tgz) 64-bit plugin in TC64\. They still work in TC32. 
 
-| Plugin Type | Plugin Download | Version | File Extensions | Description | 64-bit update comment (2021) |
+See the 64-bit update comment columns. You can also check the [list of changes](https://github.com/moisescastellano/tcmd-java-plugin/blob/main/changes.md).
+
+All samples by Handel have been cleaned from extra libraries, repackaged and are available at he links below.
+
+
+| Plugin Type | Plugin Download | Version | File Extensions | Description | 64-bit update comment |
 | --- | --- | --- | --- | --- | --- |
 | **Demo Plugins**
 | Lister plugin | Swing Demo | [2.1 (32/64 bits)](https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/SwingDemo.zip) | *.swing | The popular JFC Applet [SwingSet2](http://java.sun.com/products/plugin/1.5.0/demos/plugin/applets.html) | 64-bit version works fine |

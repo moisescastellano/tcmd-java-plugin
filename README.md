@@ -37,6 +37,7 @@ Download and resources
 - Also check the original [Java Plugin interface by Ken Handel](http://totalcmd.net/plugring/tc_java.html)
 - This is a work in progress, you can help with thing [to do](https://github.com/moisescastellano/tcmd-java-plugin/blob/main/to-do.md)
 - History of [changes](https://github.com/moisescastellano/tcmd-java-plugin/blob/main/changes.md)
+- Thread for [converting java based plugins to 64-bit](https://www.ghisler.ch/board/viewtopic.php?t=75726) at the TC forum
 
 Contact
 =======

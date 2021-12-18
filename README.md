@@ -24,7 +24,7 @@ You can view the
 
 DiskDirCrc Total Commander plugin
 =================================
-[DiskDirCrc](https://github.com/moisescastellano/diskdircrc-tcplugin) is the first java plugin of my own.
+[DiskDirCrc](https://github.com/moisescastellano/diskdircrc-tcplugin) is the first java plugin of my own, you can [download it here](https://github.com/moisescastellano/diskdircrc-tcplugin/tree/main/releases).
 
 As the original DiskDir plugin, DiskDirCrc creates a list file with all selected files and directories, including subdirs. You can then "navigate" this list with Total Commander as if it was an archive or directory containing the files.
 
@@ -32,13 +32,11 @@ DiskDirCrc also calculates the CRC of the files and writes them into the index f
 
 Download and resources
 ======================
-You can download the java plugin interface from [totalcmd.net](http://totalcmd.net/plugring/tc_java_64bits.html)
-
-Also check the original [Java Plugin interface from Ken Handel](http://totalcmd.net/plugring/tc_java.html)
-
-Here is the [JCatalogue example](http://wincmd.ru/files/9924387/JCatalogue.zip)
-
-Java Plugin interface at [totalcmd.net](http://totalcmd.net/plugring/tc_java_64bits.html)
+- [Java plugin examples](https://github.com/moisescastellano/tcmd-java-plugin/blob/main/examples_64bit.md)
+- Page of java plugin interface at [totalcmd.net](http://totalcmd.net/plugring/tc_java_64bits.html)
+- Also check the original [Java Plugin interface by Ken Handel](http://totalcmd.net/plugring/tc_java.html)
+- This is a work in progress, you can help with thing [to do](https://github.com/moisescastellano/tcmd-java-plugin/blob/main/to-do.md)
+- History of [changes](https://github.com/moisescastellano/tcmd-java-plugin/blob/main/changes.md)
 
 Contact
 =======

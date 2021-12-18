@@ -1,3 +1,5 @@
+Java Plugin Interface - history of changes
+=====================================
 
 2021-dec-18
 -----------

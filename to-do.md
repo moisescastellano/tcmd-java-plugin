@@ -6,8 +6,8 @@ I took in charge updating the Java Plugin by Ken Handel to 64-bit version in ord
 
 Miscellaneous issues
 ---------
-- if you have both TCx64 and TCx32 installed, plugins are installed under TCx64, but the javalib is searched under %COMMANDER% variable, wich TCx32 stablish to its own dir. Not a big problem, as I guess most people have just a TC, can be solved copying plugin dir including javalib.
-
+- If you have both TCx64 and TCx32 installed, plugins are installed under TCx64, but the javalib is searched under %COMMANDER% variable, wich TCx32 stablish to its own dir. Not a big problem, as I guess most people have just a TC, can be solved copying plugin dir including javalib.
+- In the lister plugin the frame is not inside the lister/quickview window: Frame is there but not in the correct placement.
 - The JadDemo plugin is much slower in TCx64, even when the JRE is the same. The only reason I can think of, is that in order to recompile the dll64, Ghisler "had to disable optimizations, it crashes with optimizations on"
 
 Logging

@@ -69,7 +69,7 @@ All samples by Handel have been cleaned from extra libraries, repackaged and are
 | Plugin Type | Plugin Name | Version / Download | File Extensions | Description | 64-bit update comment |
 | --- | --- | --- | --- | --- | --- |
 | Packer plugin | File lister | [2.1 (32/64 bits)](https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/JCatalogue.zip) | *.jlst | Creates a file list and browse its contents | 64-bit version works fine |
-| Content plugin | Image Content | [2.1 (32/64 bits)](https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/ImageContent.zip) | *.bmp, *.ico, *.jp(e)g, *.gif, *.png | Shows image properties (width, height, bit-depth) - poor performance :-( |     |
+| Content plugin | Image Content | [2.1 (32/64 bits)](https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/ImageContent.zip) | *.bmp, *.ico, *.jp(e)g, *.gif, *.png | Shows image properties (width, height, bit-depth) - poor performance :-( | 64-bit version works fine. |
 | Lister plugin | Hello World | [1.7 (32 bits)](http://java.totalcmd.net/V1.7/HelloWorld.tgz) | *.tst | Hello World: show java properties in a window | SWT based plugins need corresponding 64-bit libraries. I have installed them, yet these plugins dont work. In progress... |
 | File system plugin | Local Drives | [2.1 (32/64 bits)](https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/Drives.zip) |     | Browse your local file systems |     |
-| Content plugin | Content Demo | [2.1 (32/64 bits)](https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/ContentDemo.zip) | *.prg | Shows several test columns |     |
+| Content plugin | Content Demo | [2.1 (32/64 bits)](https://github.com/moisescastellano/tcmd-java-plugin/raw/main/examples/v2.1/ContentDemo.zip) | *.prg | Shows several test columns |  64-bit version works fine.   |

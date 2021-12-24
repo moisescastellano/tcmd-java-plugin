@@ -1,6 +1,4 @@
-Visual C++ source
-
-# src\vc-project
+# Visual C++ source
 
 Visual C++ source for creating the dll (the plugin core is just this dll renamed to wlx, wfx, wdx or wcx)
 

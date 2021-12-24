@@ -4,7 +4,9 @@ Java Plugin Interface - history of changes
 2021-dec-xx v2.2
 ----------------
 
-Source code is now available at [Github]()
+Java plugin interface is now hosted at  [Github pages](https://moisescastellano.github.io/tcmd-java-plugin/)
+
+Source code is now available at [Github](https://github.com/moisescastellano/tcmd-java-plugin)
 - src\vc-project: Visual C++ source for creating the dll (the plugin core is this dll renamed to wlx, wfx, wdx or wcx)
 - src\tc-apis: The Java plugin API source code
 - src\plugins: Java source code for each example plugin, previously sparsed in multiple .jar files

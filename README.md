@@ -32,7 +32,7 @@ DiskDirCrc also calculates the CRC of the files and writes them into the index f
 
 Download and resources
 --------------------
-- [Java plugin examples](https://github.com/moisescastellano/tcmd-java-plugin/blob/main/examples_64bit.md)
+- [Java plugin examples](https://moisescastellano.github.io/tcmd-java-plugin/examples_64bit)
 - Page of java plugin interface at [totalcmd.net](http://totalcmd.net/plugring/tc_java_64bits.html)
 - Also check the original [Java Plugin interface by Ken Handel](http://totalcmd.net/plugring/tc_java.html)
 - This is a work in progress, you can help with [things to do](https://github.com/moisescastellano/tcmd-java-plugin/blob/main/to-do.md)

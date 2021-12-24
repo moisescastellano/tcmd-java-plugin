@@ -4,9 +4,9 @@ Java Plugin Interface - history of changes
 2021-dec-18 v2.1
 ----------------
 
-Java plugin examples by Handel are now updated and available at [Github](https://github.com/moisescastellano/tcmd-java-plugin/blob/main/examples_64bit.md)
+Java plugin examples by Handel are now updated and available at [Github](https://moisescastellano.github.io/tcmd-java-plugin/examples_64bit)
 - cleaning from extra libraries not specific for each plugin, most of them are now under 1 Mb
-- further testing have been done, look at the 64-bit update comment in the [table](https://github.com/moisescastellano/tcmd-java-plugin/blob/main/examples_64bit.md)
+- further testing have been done, look at the 64-bit update comment in the [table](https://moisescastellano.github.io/tcmd-java-plugin/examples_64bit)
 - some of them need more rework, check the [to do](https://github.com/moisescastellano/tcmd-java-plugin/blob/main/to-do.md)
 
 2021-dec-14 v2.0

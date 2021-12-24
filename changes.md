@@ -1,6 +1,20 @@
 Java Plugin Interface - history of changes
 =====================================
 
+2021-dec-xx v2.2
+----------------
+
+Source code is now available at [Github]()
+- src\vc-project: Visual C++ source for creating the dll (the plugin core is this dll renamed to wlx, wfx, wdx or wcx)
+- src\tc-apis: The Java plugin API source code
+- src\plugins: Java source code for each example plugin, previously sparsed in multiple .jar files
+More info regarding this source code / git branches / folder structure information at [src readme file](src/README.md)
+
+Further testing: ImageContent plugin was missing library
+
+Logging is updated to SLF4J for each plugin. Previously was based on deprecated Apache commons-logging implementation.
+More info in....
+
 2021-dec-18 v2.1
 ----------------
 

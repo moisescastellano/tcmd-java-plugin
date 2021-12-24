@@ -10,6 +10,7 @@ Source code is now available at [Github](https://github.com/moisescastellano/tcm
 - src\vc-project: Visual C++ source for creating the dll (the plugin core is this dll renamed to wlx, wfx, wdx or wcx)
 - src\tc-apis: The Java plugin API source code
 - src\plugins: Java source code for each example plugin, previously sparsed in multiple .jar files
+
 More info regarding this source code / git branches / folder structure information at [src readme file](src/README.md)
 
 Further testing: ImageContent plugin was missing library

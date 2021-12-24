@@ -21,7 +21,7 @@ Features are merged into this branch. Releases branchs are created off of develo
 
 Visual C++ source for creating the dll (the plugin core is this dll renamed to wlx, wfx, wdx or wcx)
 
-For further details refer to [readme file](src/readme.md)
+For further details refer to [vc-project/README file](vc-project/README.md)
 
 ### src\tc-apis
 

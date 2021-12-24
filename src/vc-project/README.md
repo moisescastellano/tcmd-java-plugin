@@ -17,7 +17,9 @@ To compile, change:
 - Debug --> Release
 - Platform --> x64
 
-## Original code by Ken Handel (32-bit version) is in release-1.7 branch.
+## Original code by Ken Handel (32-bit version)
+
+Original code by Ken Handel (32-bit version) can be found in [release-1.7 branch](https://github.com/moisescastellano/tcmd-java-plugin/tree/release-1.7)
 
 ## Project changes by Ghisler (64-bit version)
 

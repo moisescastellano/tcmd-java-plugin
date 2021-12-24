@@ -36,17 +36,3 @@ Original code by Ken Handel (32-bit version) can be found in [release-1.7 branch
 Other code changes by Ghisler:
 - changed some "int" to "HANDLE" in wcxhead.h and wcxplug.cpp for *Mem* functions
 
-# src\tc-apis
-
-The Java plugin API source code
-
-# src\plugins
-
-Java source code for each example plugin
-
-## src\plugins\SNMPplugin 
-(release-1.7 branch): code was not included in the jar by Handel. SNMP library code is mixed together with the plugin class, which should be "snmpplugin.PluginEngine" - to be decompiled
-
-## src\plugins\SwingDemo 
-(release-1.7 branch): in the original jar by Handel, Sun Microsystems code is mixed together with the SwingDemo plugin - to be cleaned
-

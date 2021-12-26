@@ -1,0 +1,157 @@
+<BODY>
+This Package contains the Total Commander Java Content Plugin Interface.
+Created by
+<A HREF="mailto:kschwiersch@yahoo.de">Ken Händel</A>
+<BR><BR>
+Original Content used from contentplugin.hlp:<BR>
+Writing content plugins (version 1.5) for Total Commander
+by Copyright (C) 2002 Christian Ghisler, C. Ghisler & Co. All Rights Reserved
+
+<H1>Overview</H1>
+This help file is about writing content plugins for Total Commander. Content plugins are used for several purposes: For showing custom columns in the file lists, for searching, and in the multi-rename tool.
+<BR>
+
+The minimum functions needed for a Content plugin are:
+
+<UL>
+<LI>ContentGetSupportedField - Gets the names of the supported fields
+<LI>ContentGetValue	- Gets a value for the selected field
+
+</UL>
+The following are optional functions:
+<UL>
+
+<LI>ContentGetDetectString -	Allows TC to determine which file types are supported by the plugin, without loading the plugin.
+<LI>ContentSetDefaultParams -	Informs the plugin about settings like plugin interface version and ini file location.
+
+<LI>ContentStopGetValue -	Informs the plugin that it should abort a lengthy ContentGetValue operation.
+
+<LI>ContentGetDefaultSortOrder -	Choose a default sort order (ascending or descending) for a column.
+
+<LI>ContentPluginUnloading -	Called when your plugin is unloaded.
+<LI>ContentGetSupportedFieldFlags -	Called to get special flags, e.g. whether a field can be changed with ContentSetValue
+<LI>ContentSetValue -	Used to change a field, e.g. set a file date
+<LI>ContentEditValue -	Used to open a field-specific value editor in the change attributes dialog
+
+
+</UL>
+<H2>How it works:</H2>
+When installing the plugin, Total Commander calls ContentGetDetectString (if implemented) to find out what file types are supported by the plugin. The content string may be modified manually by the user to include/exclude certain file types. It's recommended not to use detect strings which check the file by contents, because ContentGetDetectString cannot be called delayed, so it would slow down file list display quite a lot.
+
+When Total Commander needs information about a specific file, it first parses the detect string to determine whether the plugin needs to be called for that file or not. If yes, it then calls ContentGetSupportedField in a loop, to enumerate all available fields. This info is then cached, so TC doesn't have to call the function for each file separately. If a language file with the same name as the plugin but with extension .lng is present, Total Commander will automatically translate the returned field names. To request the contents of a field for a specific file, the function ContentGetValue will be called.
+<BR>
+
+When installing the plugin, Total Commander calls ContentGetDetectString (if implemented) to find out what file types are supported by the plugin. The content string may be modified manually by the user to include/exclude certain file types. It's recommended not to use detect strings which check the file by contents, because ContentGetDetectString cannot be called delayed, so it would slow down file list display quite a lot.
+<BR>
+<BR>
+<B>Notes:</B>
+<OL>
+<LI>It's quite important to create a good detection string, especially if calling of your plugin is slow! If you cannot make a good detection string, then make sure that your plugin doesn't have any static objects defined as global variables! These would be loaded with the DLL! Only create such objects in the called functions, where needed!
+
+<LI>If the parsing of a file is very slow compared to the extraction of a field, it may be reasonable to cache all fields for a given file until the next file name is requested. This would make it faster to request multiple fields from the same file. Such a cache could be implemented with two fields, a name field storing the last name for which the cached information was stored, and a structure containing the extracted information. Please note that if your plugin returns ft_delayed, you have to take measures so the cache is protected from multiple simultaneous calls to ContentGetValue. This can be done using a semaphore.
+<LI>ContentSetValue should only be implemented where it makes sense! For example, a plugin which shows the file's size in various forms does not need to offer this function, because it makes no sense to change a file's size via the attributes dialog.
+
+</OL>
+
+<H2>Lng files for content plugins</H2>
+Translation of content plugins is quite easy: Just create a text file with the same name as the content plugin, but with extension lng. Example: contentplug.wdx -> contentplug.lng.
+<BR>
+These translations will be shown to the end user in all Total Commander dialogs, but the English strings will be stored in wincmd.ini (e.g. for saved searches, custom columns or in the multi-rename tool). Therefore it's very important to use English for the main content plugin!
+<BR>
+This lng file contains a separate section for each language, with the same name as the language part of the main Total Commander translation files. Example wcmd_deu.lng -> section [deu] for German (called "Deutsch" in German).
+<BR>
+In these sections, each string is translated like this:
+<BR>
+original=translated
+<BR>
+<H3>Example:</H3>
+<BR>
+<B>[deu]</B>
+<BR>
+kbytes=kbytes
+<BR>
+name=Name
+<BR>
+size=Grösse
+<BR>
+creationdate=Erstelldatum
+<BR>
+creationtime=Erstellzeit
+<BR>
+writedate=Aenderungsdatum
+<BR>
+writetime=Aenderungszeit
+<BR>
+accessdate=Zugriffsdatum
+<BR>
+accesstime=Zugriffszeit
+<BR>
+attributes=Attribute
+<BR>
+archive=Archiv
+<BR>
+read only=Nur lesen
+<BR>
+hidden=versteckt
+<BR>
+system=System
+<BR>
+compressed=komprimiert
+<BR>
+encrypted=verschlüsselt
+<BR>
+sparse=mager
+<BR>
+versionstring=Versionsstring
+<BR>
+versionnr=Versionsnr
+<BR>
+file type=Dateityp
+<BR>
+file=Datei
+<BR>
+folder=Ordner
+<BR>
+reparse point=symbolischer Link
+<BR>
+<B>[fra]</B>
+<BR>
+name=Nom
+<BR>
+size=Taille
+<BR>
+creationdate=date de création
+<BR>
+creationtime=temps de création
+<BR>
+writedate=date d'écriture
+<BR>
+writetime=temps d'écriture
+<BR>
+accessdate=date d'accès
+<BR>
+accesstime=temps d'accès
+<BR>
+attributes=attributs
+<BR>
+archive=archive
+<BR>
+read only=lecture seule
+<BR>
+hidden=caché
+<BR>
+system=système
+<BR>
+compressed=compressé
+<BR>
+encrypted=crypté
+<BR>
+sparse=maigre
+<BR>
+versionstring=version(texte)
+<BR>
+versionnr=N° version
+<BR>
+file type=type fichier
+<BR>
+</BODY>

@@ -1,0 +1,75 @@
+<BODY>
+This Package contains the Total Commander Java Packer Plugin Interface.
+Created by
+<A HREF="mailto:kschwiersch@yahoo.de">Ken Händel</A>
+<BR><BR>
+Original Content used from WCX Writer's Reference.hlp:<BR>
+Writing WCX packer plugins for Total Commander (Ver. 2.12)
+by Copyright (C) 2002 Christian Ghisler, C. Ghisler & Co. All Rights Reserved
+
+<H1>Overview</H1>
+This help file is about writing packer plugins for the file manager Total Commander, available on www.ghisler.com. It describes the functions you need to implement to add a specific packer to Total Commander. You should also look at the available sample packers (with source), which give you some insight on plugin programming. There are samples for Microsoft Visual C++ and Delphi.
+<BR>
+<BR>
+
+
+A WCX is nothing more than a 32-bit Windows DLL renamed to *.WCX, which supports a list of specific functions. Total Commander loads this library dynamically at runtime with LoadLibrary(), and loads all available functions with GetProcAddress(). This means that not all functions described here must be implemented (see below). All functions use the STDCALL calling convention with no C++ name mangling (see below), exactly like in most standard system libraries in Windows.
+<BR>
+<B>The minimum functions needed for a read-only plugin are:</B><UL>
+<LI>OpenArchive - tells the plugin which archive it should open for listing or reading.
+<LI>ReadHeader - this function is called as long as the plugin returns no error - the plugin must return one filename inside the archive per call.
+<LI>ProcessFile - called immediately after ReadHeader. Tells the plugin to extract, test, or skip this file.
+<LI>CloseArchive - called after ReadHeader returns an error.
+<LI>SetChangeVolProc - Set a callback function to request a disk change from the user.
+<LI>SetProcessDataProc - Set a callback function to give feedback and allow aborting of the pack or unpack operation.
+</UL>
+
+<B>All the following functions are optional.</B><BR>
+If you want to support them, you need to implement<UL>
+<LI>GetPackerCaps too, to tell Total Commander which functions are supported. If GetPackerCaps isn't available, Total Commander assumes that the plugin only supports unpacking. Even with a read-only plugin, you may want to implement GetPackerCaps and return PK_CAPS_SEARCHTEXT to allow Total Commander to search for text in archives of this type.</B>
+</UL><BR>
+<B>The first group allows to create or modify existing archives:</B><UL>
+<LI>PackFiles - tells the plugin to pack a list of files into a given archive. If the archive exists, the plugin should add the files to that archive. Total Commander will ask the user for overwrite confirmation, so files which already exist in the archive should be overwritten.
+<LI>DeleteFiles - tells the plugin to remove files from the given archive.
+<LI>ConfigurePacker - lets the plugin open a configuration dialog for packing (not unpacking!). It is called when the 'configure' button is pressed in Total Commander's Files - Pack dialog.
+</UL>
+<BR>
+<B>The following optional functions are for packing in memory:</B><BR>
+This is used by Total Commander to create TAR.Plugin files in one step. For example, the .BZ2 plugin supports these functions. Most plugins can pack multiple files into one archive, and therefore will not need to implement these functions.
+<UL><LI>StartMemPack tells the plugin to prepare internal structures for packing into memory.
+<LI>PackToMem sends new data (to be packed) to the plugin, and receives packed data from it.
+
+<LI>DoneMemPack terminates the packing to memory, either after a successful PackToMem loop, or when the user aborts packing.
+</UL>
+The following function tells the plugin to check whether it can handle the specified unknown file or not:<UL>
+<LI>CanYouHandleThisFile allows the plugin to support files which may have a different extension, e.g. self-extracting archives.
+</UL>
+<BR/>
+<B>How Total Commander calls the extraction functions:</B><BR>
+
+Here is a simple pseudocode declaration how Total Commander calls the extraction functions:
+
+<OL>
+<LI><B>Loop to scan for files in the archive:</B>
+<PRE>
+OpenArchive()          with OpenMode==PK_OM_LIST
+repeat
+   ReadHeader()
+   ProcessFile(...,PK_SKIP,...)
+until error returned
+CloseArchive()
+</PRE>
+<LI><B>Loop to extract files from the archive:</B>
+<PRE>
+OpenArchive()          with OpenMode==PK_OM_EXTRACT
+repeat
+   ReadHeader()
+   if WantToExtractThisFile()
+      ProcessFile(...,PK_EXTRACT,...)
+   else
+      ProcessFile(...,PK_SKIP,...)
+until error returned
+CloseArchive()
+</PRE>
+</OL>
+</BODY>

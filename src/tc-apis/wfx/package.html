@@ -1,0 +1,77 @@
+<BODY>
+This Package contains the Total Commander Java File System Plugin Interface.
+Created by
+<A HREF="mailto:kschwiersch@yahoo.de">Ken Händel</A>
+<BR><BR>
+Original Content used from Fsplugin.hlp:<BR>
+Writing file system plugins (version 1.5) for Total Commander
+by Copyright (C) 2002 Christian Ghisler, C. Ghisler & Co. All Rights Reserved
+
+<H1>Overview</H1>
+This help file is about writing file system plugins for Total Commander. File system plugins will show up in Network Neighborhood, not in the new file system. It is recommended to use the source of an existing plugin as a starting point.
+<BR>
+The minimum functions needed for a read-only (browsing) plugin are:
+<UL>
+<LI>FsInit -	Initialize the plugin, and pass callback functions to it
+<LI>FsFindFirst -	Retrieve the first file in a directory
+<LI>FsFindNext -	Get the next file in the directory
+<LI>FsFindClose -	Close the search handle
+</UL>
+The following optional functions allow to manipulate individual files. If you don't implement it, do NOT add it as an empty function! Total Commander will try to load these functions one by one, and only call those which you implement.
+<UL>
+<LI>FsGetDefRootName -	Asks the plugin for the name of the root folder shown in Network Neighborhood. If not implemented, Totalcmd will use the name of the DLL (without the extension).
+
+<LI>FsGetFile -	Download a file from the plugin file system to a local disk
+<LI>FsPutFile -	Upload a file from the local disk to the plugin file system
+<LI>FsRenMovFile -	Copy, rename or move a file within the plugin file system
+<LI>FsDeleteFile -	Delete a file on the plugin file system
+<LI>FsRemoveDir -	Remove a directory on the plugin file system
+<LI>FsMkDir -	Create a new directory in the plugin file system
+<LI>FsExecuteFile -	Execute a command or launch a file on the plugin file system, or show properties
+
+<LI>FsSetAttr -	Set the file attributes of a file or directory
+<LI>FsSetTime -	Set the file times
+<LI>FsDisconnect -	For file systems requiring a connection: User pressed disconnect button
+<LI>FsExtractCustomIcon -	Extract icon for file list
+<LI>FsStatusInfo -	Informs the plugin that an operation is just going to start or end (purely informational)
+<LI>FsGetPreviewBitmap -	Return a bitmap for thumbnail view
+<LI>FsLinksToLocalFiles -	This function is only needed when implementing a temp panel plugin
+<LI>FsGetLocalName -	See FsLinksToLocalFiles
+
+<LI>FsContent* -	These functions are almost identical to the Content* functions of the content plugin interface
+</UL>
+There are also 3 callback functions which the plugin can call:
+<UL>
+<LI>ProgressProc -	Call this to indicate the progress in percent of a single copy operation
+<LI>LogProc -	Call to add information to the log file, and to make the FTP toolbar appear
+<LI>RequestProc -	Request input from the user, e.g. a user name, password etc.
+</LI>
+</UL>
+<H2>How it works:</H2>
+
+When a user installs the plugin in Total Commander, the plugin is loaded and FsGetDefRootName is called without a previous call to FsInit. The name returned will be saved to wincmd.ini. Then the plugin will be unloaded. When the user enters Network Neighborhood, Totalcmd will enumerate all plugins listed in wincmd.ini without loading the plugins! A plugin will only be loaded when the user tries to enter the plugin root directory. It's also possible that a user jumps directly to a plugin subdirectory by using the 'directory hotlist' or 'directory history' functions in Totalcmd.
+<BR><BR>
+When the plugin is loaded, Totalcmd tries to get the addresses for the above functions. If any of the minimum functions isn't implemented, loading of the plugin will fail. If any of the optional functions is missing, loading will succeed, but the functions (e.g. deletion) will not be available to the user. After retrieving the function addresses, Totalcmd will call FsInit to let the plugin know its number and the callback function addresses.
+<BR><BR>
+
+The framework (Total Commander) will refresh the file list whenever the user enters any directory in the plugin's file system. The same procedure will also be executed if the framework wants to work with subdirectories, e.g. while copying/moving/deleting files in a subdir selected by the user. This is done by recursively calling FsFindFirst()...FsFindNext()...FsFindClose() for every directory encountered in the tree. This system will be called FNC (findfirst-next-close) in this text.
+<BR><BR>
+For the plugin root, Totalcmd calls FsFindFirst() with the parameter Path set to "\". The plugin should return all the items in the root, e.g. the drive letters of a remote machine, the available file systems etc. When the returned item has the directory flag set, Totalcmd will use the name to build a subdirectory path. Subdirectories are built by concatenating returned directory names separated by Backslashes, e.g. \drive1\c:\some\subdir
+<BR><BR>
+While downloading or remote-copying whole directory trees, the framework executes a complete FNC loop of a subdir and stores the files in an internal list. Then it checks the list for files and copies these files, and in a second loop it checks the list for directories, and if it encounters them, it recursively copies the subdirs. This allows to recursively copy a whole tree.
+<BR><BR>
+For counting the files in subdirs and for deleting files, multiple open file handles are needed. You should therefore initialise a temporary structure whenever FsFindFirst() is called, return its handle (pointer) to the framework, and delete it in FsFindClose(), using that same handle that is now returned to you. It's important to know that there may be multiple open find handles a the same time, although great care is taken to avoid this.
+<BR><BR>
+Some framework function may call other functions when the need arises - for instance, FsRemoveDir() is called during moving of files in order to delete the directories that are no longer needed.
+<BR><BR>
+Here are some cases when you CAN'T rely on the FNC to get called (because it has already been called before):
+<UL>
+<LI>when copying some files in the currently active directory, and there are no directories selected for copying
+
+<LI>when viewing a file with F3
+</UL>
+If FsStatusInfo is implemented, the plugin will be informed every time an operation starts and ends. No plugin functions except for FsInit and FsDisconnect will be called without an enclosing pair of FsStatusInfo calls.
+<BR><BR>
+It is strongly recommended to start with an existing plugin source and modify it, e.g. with the very simple fsplugin sample source. Then first implement FsInit
+, FsFindFirst, FsFindNext and FsFindClose to browse your file system. When this works, you can add the other functions to add functionality like uploading and downloading.
+</BODY>

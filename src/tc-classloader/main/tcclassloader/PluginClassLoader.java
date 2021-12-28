@@ -9,15 +9,19 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
-import java.util.jar.JarInputStream;
+
+import moi.tcplugins.PluginLogger;
 
 /**
- * Works around deficencies in Sun's URLClassLoader implementation.
+ * Works around deficiencies in Sun's URLClassLoader implementation.
  * Unfortunately, the URLClassLoader doesn't like it when the original JAR file
  * changes, and reportedly on Windows it keeps the JAR file locked too. As well,
  * it seems that you can't make a URLClassLoader using URLs from Resources in a
@@ -29,10 +33,13 @@ import java.util.jar.JarInputStream;
 
 public class PluginClassLoader extends ClassLoader {
 
+	// public static final Logger log = LoggerFactory.getLogger(PluginClassLoader.class);
+	private static PluginLogger log = new PluginLogger();
+	
 	/**
 	 * The suffix length of each class name.
 	 */
-	private static final int CLASSNAME_SUFFIX = 6;
+	private static final int CLASSNAME_SUFFIX = ".class".length();
 
 	/**
 	 * This is the I/O buffer size.
@@ -42,12 +49,14 @@ public class PluginClassLoader extends ClassLoader {
 	/**
 	 * A hash map with all classes of the jar files.
 	 */
-	private HashMap classes = new HashMap();
+	private HashMap<String, byte[]> classes = new HashMap<>();
 
 	/**
 	 * A hash map with all other resources of the jar files.
 	 */
-	private HashMap others = new HashMap();
+	private HashMap<String, byte[]> others = new HashMap<>();
+	
+	private HashMap<String, URL> urls = new HashMap<>();
 
 	/**
 	 * The plugin directory.
@@ -63,7 +72,7 @@ public class PluginClassLoader extends ClassLoader {
 	 * For native access: the current classloader instance (key=the plugin
 	 * library).
 	 */
-	private static Hashtable classLoaders = new Hashtable();
+	private static Hashtable<String, PluginClassLoader> classLoaders = new Hashtable<>();
 
 	/**
 	 * The Java plugin loaded by this plugin classloader.
@@ -101,10 +110,14 @@ public class PluginClassLoader extends ClassLoader {
 	public static Object getPlugin(final String libName, final String className)
 			throws ClassNotFoundException, IOException, InstantiationException,
 			IllegalAccessException {
+		
+		if (log.isDebugEnabled()) {
+			log.debug("getPlugin: libName=[" + libName + "]; className =[" + className + "]");
+		}
 		PluginClassLoader cl = getPluginClassLoader(libName);
 		if (cl.pluginObject == null) {
 			// the plugin classloader finds the plugin class
-			Class pluginClass = cl.findClass(className);
+			Class<?> pluginClass = cl.findClass(className);
 			// create a new instance of the plugin and store it in the plugin
 			// classloader instance
 			cl.pluginObject = pluginClass.newInstance();
@@ -125,6 +138,11 @@ public class PluginClassLoader extends ClassLoader {
 	 */
 	public static PluginClassLoader getPluginClassLoader(final String libName)
 			throws IOException {
+
+		if (log.isDebugEnabled()) {
+			log.debug("getPluginClassLoader: libName=[" + libName + "]");
+		}
+
 		PluginClassLoader cl;
 		// get the plugin classloader associated to the plugin library
 		if (classLoaders.get(libName) == null) {
@@ -135,7 +153,7 @@ public class PluginClassLoader extends ClassLoader {
 		} else {
 			// get the already created plugin classloader associated to the
 			// plugin library
-			cl = (PluginClassLoader) classLoaders.get(libName);
+			cl = classLoaders.get(libName);
 		}
 		// return the Java plugin classloader
 		return cl;
@@ -146,7 +164,11 @@ public class PluginClassLoader extends ClassLoader {
 	 * 
 	 */
 	private PluginClassLoader() {
+		
 		super(PluginClassLoader.class.getClassLoader());
+		if (log.isDebugEnabled()) {
+			log.debug("PluginClassLoader: JAVALIB="+JAVALIB);
+		}
 		try {
 			this.pluginDirectory = JAVALIB;
 			configureFromDirectory(JAVALIB);
@@ -167,6 +189,9 @@ public class PluginClassLoader extends ClassLoader {
 	 */
 	public PluginClassLoader(final String libName) throws IOException {
 		super(ROOT_CL);
+		if (log.isDebugEnabled()) {
+			log.debug("PluginClassLoader: libName="+libName);
+		}
 		File tcLib = new File(libName);
 		String cwd = tcLib.getParentFile().getAbsolutePath();
 		this.pluginDirectory = cwd;
@@ -183,6 +208,7 @@ public class PluginClassLoader extends ClassLoader {
 	 *             I/O exception
 	 */
 	private void configureFromDirectory(final String cwd) throws IOException {
+		log.debug("configureFromDirectory: cwd="+cwd);
 		File dir = new File(cwd);
 		String[] files = dir.list(new FilenameFilter() {
 			/**
@@ -208,6 +234,9 @@ public class PluginClassLoader extends ClassLoader {
 	 * @see java.lang.ClassLoader#getResourceAsStream(java.lang.String)
 	 */
 	public final InputStream getResourceAsStream(final String name) {
+		if (log.isDebugEnabled()) {
+			log.debug("getResourceAsStream: name="+name);
+		}
 		InputStream stream = getParent().getResourceAsStream(name);
 		if (stream == null) {
 			byte[] buf = (byte[]) others.get(name);
@@ -219,7 +248,7 @@ public class PluginClassLoader extends ClassLoader {
 	}
 
 	/**
-	 * Get resource as url. Not yet implemented.
+	 * Get resource as url.
 	 * 
 	 * @param name
 	 *            the resource name
@@ -227,17 +256,20 @@ public class PluginClassLoader extends ClassLoader {
 	 * @see java.lang.ClassLoader#getResource(java.lang.String)
 	 */
 	public final URL getResource(final String name) {
-		try {
-			return new File(this.pluginDirectory
-					+ System.getProperty("file.separator") + name).toURL();
-		} catch (MalformedURLException e) {
-			throw new Error("Illegal URL for file=" + this.pluginDirectory
-					+ System.getProperty("file.separator") + name);
+		if (log.isDebugEnabled()) {
+			log.debug("getResource: name=[" + name + "];URL=[" + urls.get(name) +"]");
 		}
+		return urls.get(name);
+		/*
+		if (name.endsWith(".class")) {
+			String className = getClassName(name);
+			return classes.get(className);
+		}
+		*/
 	}
 
 	/**
-	 * Get resources as enumeration. Not yet implemented.
+	 * Get resources as enumeration.
 	 * 
 	 * @param name
 	 *            the resources to find
@@ -245,9 +277,16 @@ public class PluginClassLoader extends ClassLoader {
 	 * @throws IOException
 	 *             resource is not found
 	 */
-	protected final Enumeration findResources(final String name)
-			throws IOException {
-		throw new Error("Not Yet Implemented!");
+	protected final Enumeration<URL> findResources(final String name) throws IOException {
+		List<URL> result = new ArrayList<URL>(Collections.list(super.findResources(name)));
+		if (log.isDebugEnabled()) {
+			log.debug("findResources: name="+ name + "];URL=[" + urls.get(name) +"];superFindResources:"+result.size());
+		}
+		URL url = getResource(name);
+		if (url != null) {
+			result.add(url);
+		}
+		return Collections.enumeration(result);
 	}
 
 	/**
@@ -276,8 +315,11 @@ public class PluginClassLoader extends ClassLoader {
 	 * @exception ClassNotFoundException
 	 *                the class could not be found
 	 */
-	public final Class findClass(final String name)
+	public final Class<?> findClass(final String name)
 			throws ClassNotFoundException {
+		if (log.isDebugEnabled()) {
+			log.debug("findClass: name="+name);
+		}
 		byte[] data = findClassData(name);
 		if (data != null) {
 			return defineClass(name, data, 0, data.length);
@@ -293,60 +335,31 @@ public class PluginClassLoader extends ClassLoader {
 	 *            the jar file to add
 	 */
 	public final void addJar(final JarFile jar) {
-		Enumeration entries = jar.entries();
+		log.debug("addJar: jar="+jar.getName());
+		Enumeration<JarEntry> entries = jar.entries();
 		while (entries.hasMoreElements()) {
-			JarEntry entry = (JarEntry) entries.nextElement();
-			if (entry.getName().endsWith(".class")) {
+			JarEntry entry = entries.nextElement();
+			String entryName = entry.getName();
+			if (log.isDebugEnabled()) {
+				log.debug("addJar: JarInputStream:" + entryName);
+			}
+			if (entryName.endsWith("/")) {
+				// do nothing
+			} else if (entry.getName().endsWith(".class")) {
 				try {
 					addClassFile(jar, entry);
 				} catch (IOException e) {
+					log.error("addJar: on addClassFile", e);
 					e.printStackTrace();
 				}
 			} else {
 				try {
 					addOtherFile(jar, entry);
 				} catch (IOException e) {
+					log.error("addJar: on addOtherFile", e);
 					e.printStackTrace();
 				}
 			}
-		}
-	}
-
-	/**
-	 * Adds a new JAR to this ClassLoader. This may be called at any time.
-	 * 
-	 * @param stream
-	 *            the jar input stream to add
-	 */
-	public final void addJar(final JarInputStream stream) {
-		byte[] buf = new byte[BUFFER_SIZE];
-		int count;
-		try {
-			while (true) {
-				JarEntry entry = stream.getNextJarEntry();
-				if (entry == null) {
-					break;
-				}
-				String name = entry.getName();
-				int size = (int) entry.getSize();
-				ByteArrayOutputStream out;
-				if (size >= 0) {
-					out = new ByteArrayOutputStream(size);
-				} else {
-					out = new ByteArrayOutputStream(BUFFER_SIZE);
-				}
-				while ((count = stream.read(buf)) > -1) {
-					out.write(buf, 0, count);
-				}
-				out.close();
-				if (name.endsWith(".class")) {
-					classes.put(getClassName(name), out.toByteArray());
-				} else {
-					others.put(name, out.toByteArray());
-				}
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 	}
 
@@ -358,8 +371,15 @@ public class PluginClassLoader extends ClassLoader {
 	 * @return the byte array with class data
 	 */
 	private byte[] findClassData(final String name) {
-
-		return (byte[]) classes.remove(name);
+		if (log.isDebugEnabled()) {
+			byte[] cd = classes.get(name);
+			if (cd == null) {
+				log.debug("findClassData: name=[" + name + "] is null");
+			} else {
+				log.debug("findClassData: name=[" + name + "];length=" + cd.length);
+			}
+		}
+		return classes.remove(name);
 
 	}
 
@@ -373,11 +393,22 @@ public class PluginClassLoader extends ClassLoader {
 	 * @throws IOException
 	 *             I/O error
 	 */
-	private void addClassFile(final JarFile jar, final JarEntry entry)
-			throws IOException {
+	private void addClassFile(final JarFile jar, final JarEntry entry) throws IOException {
+		if (log.isDebugEnabled()) {
+			log.debug("addClassFile: jar=["+jar.getName()+"];entry["+entry+"]");
+		}
 		classes.put(getClassName(entry.getName()), getFileBytes(jar, entry));
+		addUrl(jar, entry);
 	}
-
+	
+	private void addUrl(final JarFile jar, final JarEntry entry) throws MalformedURLException {
+		String url = "jar:file:/" + jar.getName() + "!/" + entry.getName(); 
+		if (log.isDebugEnabled()) {
+			log.debug("addUrl: jar=["+jar.getName()+"];entry["+entry+"];url=["+url+"]");
+		}
+		urls.put(entry.getName(), new URL(url));
+	}
+	
 	/**
 	 * Add other resource file to classes.
 	 * 
@@ -390,7 +421,11 @@ public class PluginClassLoader extends ClassLoader {
 	 */
 	private void addOtherFile(final JarFile jar, final JarEntry entry)
 			throws IOException {
+		if (log.isDebugEnabled()) {
+			log.debug("addOtherFile: jar=["+jar.getName()+"];entry["+entry+"]");
+		}
 		others.put(entry.getName(), getFileBytes(jar, entry));
+		addUrl(jar, entry);
 	}
 
 	/**
@@ -401,8 +436,10 @@ public class PluginClassLoader extends ClassLoader {
 	 * @return the class name
 	 */
 	private static String getClassName(final String fileName) {
-		return fileName.substring(0, fileName.length() - CLASSNAME_SUFFIX)
-				.replace('/', '.');
+		if (log.isDebugEnabled()) {
+			log.trace("getClassName: fileName=["+fileName+"]");
+		}
+		return fileName.substring(0, fileName.length() - CLASSNAME_SUFFIX).replace('/', '.');
 	}
 
 	/**
@@ -416,13 +453,13 @@ public class PluginClassLoader extends ClassLoader {
 	 * @throws IOException
 	 *             I/O error
 	 */
-	private static byte[] getFileBytes(final JarFile jar, final JarEntry entry)
-			throws IOException {
-		ByteArrayOutputStream stream = new ByteArrayOutputStream((int) entry
-				.getSize());
+	private static byte[] getFileBytes(final JarFile jar, final JarEntry entry) throws IOException {
+		if (log.isDebugEnabled()) {
+			log.debug("getFileBytes: jar=[" + jar.getName() + "];entry[" + entry + "]");
+		}
+		ByteArrayOutputStream stream = new ByteArrayOutputStream((int) entry.getSize());
 		byte[] buf = new byte[BUFFER_SIZE];
-		BufferedInputStream in = new BufferedInputStream(jar
-				.getInputStream(entry));
+		BufferedInputStream in = new BufferedInputStream(jar.getInputStream(entry));
 		int count;
 		while ((count = in.read(buf)) > -1) {
 			stream.write(buf, 0, count);
@@ -436,6 +473,9 @@ public class PluginClassLoader extends ClassLoader {
 	 * {@inheritDoc}
 	 */
 	protected final String findLibrary(final String libname) {
+		if (log.isDebugEnabled()) {
+			log.debug("findLibrary: libname=["+libname+"]");
+		}
 		if (libname.startsWith("tc.library.name")) {
 			String absolutePathName = this.pluginDirectory
 					+ System.getProperty("file.separator") + fLibName;

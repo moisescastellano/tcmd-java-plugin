@@ -1,6 +1,7 @@
 
 .classpath
 .project
+*.jardesc
 
 # Compiled class file
 *.class

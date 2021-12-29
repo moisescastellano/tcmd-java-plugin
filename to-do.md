@@ -10,19 +10,6 @@ Miscellaneous issues
 - In the lister plugin the frame is not inside the lister/quickview window: Frame is there but not in the correct placement.
 - The JadDemo plugin is much slower in TCx64, even when the JRE is the same. The only reason I can think of, is that in order to recompile the dll64, Ghisler "had to disable optimizations, it crashes with optimizations on"
 
-Logging
----------
-I have not been able to get the logging for plugins to work. Handel configured the ZeroConfSocketHubAppender by default, that works along with Apache Chainsaw, sending logs visa sockets and showing in a GUI. I installed Chainsaw, but just the initial connections is logged. Also Chainsaw is quite deprecated, having a main page with lots of broken links, and dependencies are hard to find.
-
-So I tried to update the commons-logging and log4j libraries and config them to log in file, but also that did not work. 
-
-Then I updated to log4j2, it didn't work either.
-
-I have come to the conclusion that the way the PluginClassLoader loads the jars from javalib is incompatible with Log4j's Loggers instantiation.
-
-If you wanna give it a try, let me know if you can make it work.
-
-
 Update / Reviewing libraries not needed
 ------------------------------------
 As javalib is now copied in every plugin zip, it should be reviewed which of the libraries are needed for which plugins, to remove the others.

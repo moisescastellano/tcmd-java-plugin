@@ -305,6 +305,18 @@ public class PluginClassLoader extends ClassLoader {
 	public final int hashCode() {
 		return getParent().hashCode();
 	}
+	
+    protected final Class<?> defineClass(String name, byte[] b, int len) throws ClassFormatError {        
+    	int i = name.lastIndexOf('.');
+        if (i != -1) {
+            String pkgname = name.substring(0, i);
+            if (getPackage(pkgname) == null) {
+            	definePackage(pkgname, null, null, null, null, null, null, null);
+            }
+        }
+        return defineClass(name, b, 0, len, null);
+    }
+
 
 	/**
 	 * Find class in jar files.
@@ -322,7 +334,7 @@ public class PluginClassLoader extends ClassLoader {
 		}
 		byte[] data = findClassData(name);
 		if (data != null) {
-			return defineClass(name, data, 0, data.length);
+			return defineClass(name, data, data.length);
 		} else {
 			throw new ClassNotFoundException(name);
 		}

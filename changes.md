@@ -1,6 +1,12 @@
 Java Plugin Interface - history of changes
 =====================================
 
+2022-jan-xx v2.3
+----------------
+- PluginClassLoader changes:
+  - define package for classes so that getpackage does not fail
+  - help and properties files in plugin directory are available as resourceStream
+
 2021-dec-xx v2.2
 ----------------
 

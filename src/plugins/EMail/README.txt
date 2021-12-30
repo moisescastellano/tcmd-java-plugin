@@ -1,13 +1,7 @@
 Additional Installation Notes:
 ==============================
-At least Java Runtime Environment (JRE) 5.0 is required (I do not test with earlier versions)
-Download it from here: http://java.sun.com/javase/downloads/index_jdk5.jsp
-
-You must have installed additional libraries first BEFORE installing any Java plugin, if not, do it now and re-install.
-These libraries are shared between all Java plugins.
-To check this be sure that the sub-directory javalib in the Total Commander installation directory exist and is not empty.
-This step is done only once, before the first java plugin can be installed.
-If javalib is missing install it from http://www.totalcmd.net/plugring/tc_java.html
+A Java Runtime Environment is required. If you are using Total Commander x64, you need to use a 64-bit JRE.
+Installing additional libraries as stated in original README.TXT file is NO LONGER REQUIRED.
 
 What this plugin does:
 ======================
@@ -22,14 +16,42 @@ pop3://<user>:<password>@pop.mail.yahoo.de
 If all entered correctly, the connection will be established and the emails are downloaded. You can cancel the operation
 and view the messages get so far (newest message is loaded first).
 
-Plugin Directory Contents:
-==========================
-EMail.wfx - The plugin file you installed
-errormessages.ini - multilingual error message texts of the Java Plugin Interface
-license.txt - the license of the Java Plugin Interface
-pluginst.inf - Total Commander plugin auto-install configuration file (needed for installation only)
-Readme.txt - This file you are reading now
-tc_javaplugin.ini - The configuration file of this Java plugin
-tc-apis-*.jar - Java API of the Java Plugin Interface
-other resources and
-*.jar - The Java implementation of this plugin (containing source code, classes and additional resources)
+
+64-bit version:
+=================
+The original Java Plugin is Copyright (C) 2006-2007 Ken Handel. 
+He also provided a lot of java plugin examples for any kind: lister, packer, file system and content: http://java.totalcmd.net/V1.7/examples.html
+This is one of those examples.
+
+However the developer abandoned the project in 2007 (now is 2021), and he has been unreachable since then (some people tried to reach him long ago).
+64-bit versions of this plugin were no available, because as said the project was abandoned in 2007 and 64-bit tcmd came around 2011.
+That makes it unusable for most people, nowadays using 64-bit TC.
+
+As the license allows so, we have undertaken the project;
+special thanks to Ghisler (author of TC) for recompiling the dll.
+you can see the thread discussing it in the TC forum at: https://www.ghisler.ch/board/viewtopic.php?t=75726
+
+Now, every java plugin:
+  1. Works as an independent 64-bit plugin in TC64. Still works in TC32.
+  2. May be installed as usual, just entering the zip, without further ado.
+
+Changes for 64-bit version (from 32-bit original java plugin by Ken Handel):
+============================================================================
+- included the new (wcx64 / wfx64 / wlx64 / wdx64) dll, recompiled by Ghisler (author of Total Commander), from Handel sources
+- included the javalib dirs: Now every Java plugin installs just entering the zip, without further ado
+- modified tc_javaplugin.ini accordingly (to refer the new location of javalib)
+- included this text file with some extra info for the 64-version
+- repackaged as .zip (.tgz needs first to be untgzed to tar, also not so standard)
+
+Contact
+=======
+Let me know if you have any comment, suggestion or problem regarding this java plugin, 
+choose the most appropiate way to contact me:
+ - the forum thread above: https://www.ghisler.ch/board/viewtopic.php?t=75726
+ - email: moises.castellano (at) gmail.com
+ - https://github.com/moisescastellano/tcmd-java-plugin/issues  (github for future java plugins, in progress)
+Please detail the specific java plugin and JRE version you are using.
+
+ 
+Enjoy!
+

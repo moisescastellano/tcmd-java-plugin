@@ -13,22 +13,23 @@ you can see the thread discussing it in [this thread of TC forum](https://www.gh
 
 Java plugin examples
 --------------------
-Check the [list of java plugin examples](examples_64bit.md)
+Check the [list of java plugin examples](examples_64bit.md). **There are over 20 of them now!**
 
 Now, every java plugin:
-  1. Works as an independent 64-bit plugin in TC64. Still works in TC32.
-  2. May be installed as usual, just entering the zip, without further ado.
-  
-You can view the 
-[changes for 64-bit version](https://github.com/moisescastellano/tcmd-java-plugin/blob/main/changes.md) (from 32-bit original java plugin by Ken Handel)
+ - Works as an independent 64-bit plugin in TC64. Still works in TC32.
+ - May be installed as usual, just entering the zip, without further ado.
+ 
+### [DiskDirCrc](https://github.com/moisescastellano/diskdircrc-tcplugin)
 
-DiskDirCrc Total Commander plugin
---------------------
 [DiskDirCrc](https://github.com/moisescastellano/diskdircrc-tcplugin) is the first java plugin of my own, you can [download it here](https://github.com/moisescastellano/diskdircrc-tcplugin/tree/main/releases).
 
 As the original DiskDir plugin, DiskDirCrc creates a list file with all selected files and directories, including subdirs. You can then "navigate" this list with Total Commander as if it was an archive or directory containing the files.
 
 DiskDirCrc also calculates the CRC of the files and writes them into the index file. CRC is an error-detecting code commonly used in digital storage devices to detect accidental changes to data. DiskDirCrc can then check (Alt+Shift+F9) the integrity of files comparing the CRC in the list.
+
+### [JavaDecompiler](https://moisescastellano.github.io/javadecompiler-tcplugin/)
+
+This plugin allows Total Commander to both **decompile** and **navigate** java *.class* files. It is a packer plugin, meaning you can "enter" these files as archives. 
 
 Download and resources
 --------------------

@@ -16,7 +16,7 @@ Java Plugin Interface - history of changes
   - src\tc-apis: The Java plugin API source code
   - src\plugins: Java source code for each example plugin, previously sparsed in multiple .jar files
   - Frozen release-1.7 branch is intended to keep **original code by Ken Handel**, java plugin interface version 1.7.
-  - More info regarding this source code / git branches / folder structure information at [src readme file](src/README.md)
+  - More info regarding this source code / git branches / folder structure at [src readme file](src/README.md)
 - Further testing done on the [example plugins](https://moisescastellano.github.io/tcmd-java-plugin/examples_64bit)
   - ImageContent plugin was missing swt library
 - Logging is updated to SLF4J for each plugin. Previously was based on deprecated Apache commons-logging implementation.

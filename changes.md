@@ -1,8 +1,8 @@
 Java Plugin Interface - history of changes
 =====================================
 
-2021-dec-xx v2.2
-----------------
+v2.2 - 2021-dec-30
+------------------
 
 - Java plugin interface is now hosted at [Github pages](https://moisescastellano.github.io/tcmd-java-plugin/)
 - Source code is now available at [Github](https://github.com/moisescastellano/tcmd-java-plugin)
@@ -10,7 +10,7 @@ Java Plugin Interface - history of changes
   - src\tc-apis: The Java plugin API source code
   - src\plugins: Java source code for each example plugin, previously sparsed in multiple .jar files
   - Frozen release-1.7 branch is intended to keep **original code by Ken Handel**, java plugin interface version 1.7.
-  - More info regarding this source code / git branches / folder structure information at [src readme file](src/README.md)
+  - More info regarding this source code / git branches / folder structure at [src readme file](src/README.md)
 - Further testing done on the [example plugins](https://moisescastellano.github.io/tcmd-java-plugin/examples_64bit)
   - ImageContent plugin was missing swt library
 - Logging is updated to SLF4J for each plugin. Previously was based on deprecated Apache commons-logging implementation.
@@ -18,16 +18,16 @@ Java Plugin Interface - history of changes
   - Documentation about [logging configuration](https://github.com/moisescastellano/tcmd-java-plugin/logging.md)
 - PluginClassLoader was incomplete (missing e.g. findResources implementation). It has now been completed
 
-2021-dec-18 v2.1
-----------------
+v2.1 - 2021-dec-18
+------------------
 
 Java plugin examples by Handel are now updated and available at [Github](https://moisescastellano.github.io/tcmd-java-plugin/examples_64bit)
 - cleaning from extra libraries not specific for each plugin, most of them are now under 1 Mb
 - further testing have been done, look at the 64-bit update comment in the [table](https://moisescastellano.github.io/tcmd-java-plugin/examples_64bit)
 - some of them need more rework, check the [to do](https://github.com/moisescastellano/tcmd-java-plugin/blob/main/to-do.md)
 
-2021-dec-14 v2.0
-----------------
+v2.0 - 2021-dec-14
+------------------
 
 Now, every java plugin:
 - Works as an independent 64-bit plugin in TC64. Still works in TC32.

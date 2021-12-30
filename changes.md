@@ -7,8 +7,8 @@ Java Plugin Interface - history of changes
   - define package for classes so that getpackage does not fail
   - help and properties files in plugin directory are available as resourceStream
 
-2021-dec-xx v2.2
-----------------
+v2.2 - 2021-dec-30
+------------------
 
 - Java plugin interface is now hosted at [Github pages](https://moisescastellano.github.io/tcmd-java-plugin/)
 - Source code is now available at [Github](https://github.com/moisescastellano/tcmd-java-plugin)
@@ -24,16 +24,16 @@ Java Plugin Interface - history of changes
   - Documentation about [logging configuration](https://github.com/moisescastellano/tcmd-java-plugin/logging.md)
 - PluginClassLoader was incomplete (missing e.g. findResources implementation). It has now been completed
 
-2021-dec-18 v2.1
-----------------
+v2.1 - 2021-dec-18
+------------------
 
 Java plugin examples by Handel are now updated and available at [Github](https://moisescastellano.github.io/tcmd-java-plugin/examples_64bit)
 - cleaning from extra libraries not specific for each plugin, most of them are now under 1 Mb
 - further testing have been done, look at the 64-bit update comment in the [table](https://moisescastellano.github.io/tcmd-java-plugin/examples_64bit)
 - some of them need more rework, check the [to do](https://github.com/moisescastellano/tcmd-java-plugin/blob/main/to-do.md)
 
-2021-dec-14 v2.0
-----------------
+v2.0 - 2021-dec-14
+------------------
 
 Now, every java plugin:
 - Works as an independent 64-bit plugin in TC64. Still works in TC32.

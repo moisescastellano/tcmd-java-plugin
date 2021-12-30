@@ -13,8 +13,8 @@ v2.2 - 2021-dec-30
   - More info regarding this source code / git branches / folder structure at [src/README.md file](src/README.md)
 - Further testing done on the [example plugins](https://moisescastellano.github.io/tcmd-java-plugin/examples_64bit)
   - ImageContent plugin was missing swt library
-- Logging is updated to SLF4J for each plugin. Previously was based on deprecated Apache commons-logging implementation.
-  - Logging now works for Log4j via SLF4J2.
+- Logging is updated to SLF4J for each plugin (previously was based on deprecated Apache commons-logging implementation).
+  - Logging now works for Log4j2 via SLF4J.
   - Logging is disabled by default, any logging implementation has been removed from the plugin itself.
   - Documentation about [how to configure logging for plugins](https://github.com/moisescastellano/tcmd-java-plugin/blob/main/logging.md).
 - PluginClassLoader was incomplete (missing e.g. findResources implementation). It has now been completed

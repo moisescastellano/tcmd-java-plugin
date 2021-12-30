@@ -16,12 +16,13 @@ v2.2 - 2021-dec-30
   - src\tc-apis: The Java plugin API source code
   - src\plugins: Java source code for each example plugin, previously sparsed in multiple .jar files
   - Frozen release-1.7 branch is intended to keep **original code by Ken Handel**, java plugin interface version 1.7.
-  - More info regarding this source code / git branches / folder structure at [src readme file](src/README.md)
+  - More info regarding this source code / git branches / folder structure at [src/README.md file](src/README.md)
 - Further testing done on the [example plugins](https://moisescastellano.github.io/tcmd-java-plugin/examples_64bit)
   - ImageContent plugin was missing swt library
 - Logging is updated to SLF4J for each plugin. Previously was based on deprecated Apache commons-logging implementation.
-  - Logging now works for Log4j via SLF4J.
-  - Documentation about [logging configuration](https://github.com/moisescastellano/tcmd-java-plugin/logging.md)
+  - Logging now works for Log4j via SLF4J2.
+  - Logging is disabled by default, any logging implementation has been removed from the plugin itself.
+  - Documentation about [how to configure logging for plugins](https://github.com/moisescastellano/tcmd-java-plugin/blob/main/logging.md).
 - PluginClassLoader was incomplete (missing e.g. findResources implementation). It has now been completed
 
 v2.1 - 2021-dec-18

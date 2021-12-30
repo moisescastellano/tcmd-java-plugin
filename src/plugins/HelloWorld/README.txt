@@ -5,14 +5,7 @@ Installing additional libraries as stated in original README.TXT file is NO LONG
 
 What this plugin does:
 ======================
-This plugin shows the contents of your images (BMP, ICO, JPG, JPEG, GIF, PNG).
-With this plugin you can view an image in the lister window.
-
-How to use this plugin:
-=======================
-Simply open the file "demo.gif" in the lister window (F3) or in quick view (Ctrl+Q) to show up the image.
-To quit the demo simply press Escape and close the window (Ctrl+Q again in quick view or closing the external window)
-
+Hello World: show java properties in a window
 
 64-bit version:
 =================

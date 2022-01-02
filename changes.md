@@ -1,8 +1,10 @@
 Java Plugin Interface - history of changes
-=====================================
+==========================================
 
-2022-jan-xx v2.3
+v2.3 - to be released 2022-jan-xx
 ----------------
+- src\vc-project: configured for compiling 64bit version, [provided by Ghisler author of TC](https://www.ghisler.ch/board/viewtopic.php?p=408040#p408040)
+- plugin demo included
 - PluginClassLoader changes:
   - define package for classes so that getpackage does not fail
   - help and properties files in plugin directory are available as resourceStream
@@ -54,4 +56,4 @@ The [Java Plugin Interface 1.x](http://totalcmd.net/plugring/tc_java.html) is (C
 
 As the license allows so, we have undertaken the project.
 
-I numbered version as 2.0 as it would be confusing to start with 1.0, since Ken Handel's latest version was 1.7
+I numbered first 64-bit version as 2.0 as it would be confusing to start with 1.0, since Ken Handel's latest version was 1.7

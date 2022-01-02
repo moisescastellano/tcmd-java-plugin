@@ -1,8 +1,13 @@
 
 Things To do
 ============
-This is a work in progress. 
+This is a work in progress. **Help wanted!** - in particular with Visual C++ issues. See contact below.
+
 I took in charge updating the Java Plugin by Ken Handel to 64-bit version in order to develop muy own [DiskDirCrc](https://github.com/moisescastellano/diskdircrc-tcplugin) java plugin.
+
+Check also the [issues page](https://github.com/moisescastellano/tcmd-java-plugin/issues).
+
+[Plugins based on this interface](https://github.com/moisescastellano/tcmd-java-plugin/blob/main/examples_64bit.md) have their own to-do page.
 
 Miscellaneous issues
 ---------

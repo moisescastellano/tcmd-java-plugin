@@ -47,6 +47,11 @@ Now, every java plugin:
 - included text file with some extra info for the 64-version
 - repackaged as .zip (.tgz needed first to be un-tgz-ed to tar, also not so standard)
 
+Why do version numbers begin at v2.0?
+--------------------------------
 
+The [Java Plugin Interface 1.x](http://totalcmd.net/plugring/tc_java.html) is (C) 2006-2007 Ken Handel. However the developer abandoned the project in 2007, and he has been unreachable since then (some people tried to reach him long ago). 64-bit versions of this plugin were no available, because as said the project was abandoned in 2007 and 64-bit tcmd came around 2011. That makes it unusable for most people, nowadays using 64-bit TC.
 
+As the license allows so, we have undertaken the project.
 
+I numbered version as 2.0 as it would be confusing to start with 1.0, since Ken Handel's latest version was 1.7

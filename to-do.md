@@ -9,6 +9,20 @@ Check also the [issues page](https://github.com/moisescastellano/tcmd-java-plugi
 
 [Plugins based on this interface](https://github.com/moisescastellano/tcmd-java-plugin/blob/main/examples_64bit.md) have their own to-do page.
 
+Priority issues
+---------
+There are now a couple (closely related) issues reported regarding this Java plugin interface, which are difficult to solve for myself as they are Visual C++ related, which I am not familiar with.
+
+For some JDK/JRE versions the plugin has a hard time to find or load the Java Virtual Machine.
+
+[The first one](https://github.com/moisescastellano/javadecompiler-tcplugin/issues/1) is the error "**JRE is not installed**" when finding the library, that the plugin searchs in two ways described in the issue.
+
+[The second one](https://github.com/moisescastellano/tcmd-java-plugin/issues/2) is plugin complains "**LoadLibrary Failed / Starting Java Virtual Machine failed**". Specific JREs failing are reported in the issue.
+
+If you are giving a try to the Java plugin interface or any of its plugins, **some working (Oracle JREs) versions** are: jre1.8.0_211, jre-8u311-windows-x64
+
+If you are a developer and can help, the [JVM search code is performed here](https://github.com/moisescastellano/tcmd-java-plugin/blob/main/src/vc-project/Total%20Commander%20Java%20Plugin/java.cpp)
+
 Miscellaneous issues
 ---------
 - If you have both TCx64 and TCx32 installed, plugins are installed under TCx64, but the javalib is searched under %COMMANDER% variable, wich TCx32 stablish to its own dir. Not a big problem, as I guess most people have just a TC, can be solved copying plugin dir including javalib.

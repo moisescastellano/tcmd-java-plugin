@@ -5,12 +5,14 @@ v2.3 - to be released 2022-jan-xx
 ----------------
 - src\vc-project: configured for compiling 64bit version, [provided by Ghisler author of TC](https://www.ghisler.ch/board/viewtopic.php?p=408040#p408040)
 - PluginClassLoader changes:
-  - define package for classes so that getpackage does not fail
-  - help and properties files in plugin directory are available as resourceStream
-- There are now 22 plugins based on the Java interface:
+  - new method getVersionNumber to avoid problems when multiple java plugins are installed with different javalib versions
+  - define package for classes so that getpackage call (e.g. from Tika libraries) does not fail
+  - resource files (such as configuration yamls) in plugin directory are now available as resourceStream (getResourceAsStream)
+- There are now 22 [plugins based on the Java interface](https://moisescastellano.github.io/tcmd-java-plugin/examples_64bit):
 	- DiskDirCrc, JavaDecompiler, ThousandTypesPreview
 	- The 19 original examples by Ken Handel
 - Issue "JRE not found" was solved and documented in main README.md
+  - for more info refer to JavaDecompiler [issues page](https://github.com/moisescastellano/javadecompiler-tcplugin/issues/1)
 
 v2.2 - 2021-dec-30
 ------------------

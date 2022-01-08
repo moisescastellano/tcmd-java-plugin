@@ -12,8 +12,13 @@ From [SLF4J page](https://www.slf4j.org/):
 For a typical user there is no difference removing Log4J (except now the .zip is some kBs smaller), as he will not be using logs.
 A developer can still use Log4J or any logging library, just by including the .jar he prefers in javalib, no recompilation needed.
 
-
 See below how to configure SLF4J with Log4j2
+
+Warning about JVM configuration
+-------------------------
+In order to save CPU and memory resources, every Java plugin is executed in the same JVM.
+The drawback of this approach is that properties such as -Dlog4j.configurationFile are shared between all the Java plugins;
+Have this in mind when configuring logging: the tc_javaplugin.ini of the first plugin loaded is used for configuration.
 
 PluginClassLoader
 -------------------------
@@ -24,7 +29,6 @@ To enable logging, a dir "c:/logs/[level]" should be created, where [level] is t
 
 PluginClassLoader itself was also incomplete (missing e.g.  findResources implementation).
 It has been now completed for version 2.2
-
 
 Configuring SLF4J with Log4j2
 -------------------------

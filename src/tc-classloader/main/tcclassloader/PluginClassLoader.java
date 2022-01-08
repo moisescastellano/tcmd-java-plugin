@@ -90,6 +90,17 @@ public class PluginClassLoader extends ClassLoader {
 	 */
 	private static final PluginClassLoader ROOT_CL = new PluginClassLoader();
 
+	private static final int[] versionNumber = {2,3,0}; // 2.3.0
+	private static final String version = versionNumber[0] + "." + versionNumber[1] + "." + versionNumber[2]; 
+	
+	public static int[] getVersionNumber() {
+		return versionNumber;
+	}
+	
+	public static String getVersion() {
+		return version;
+	}
+	
 	/**
 	 * Called by native code: Get the Java plugin instance of the Total
 	 * Commander plugin library.
@@ -226,12 +237,20 @@ public class PluginClassLoader extends ClassLoader {
 		}
 		
 		File[] otherFiles = dir.listFiles(new FilenameFilter() {
+			private String[] nonResources = new String[] {".jar",".zip",".ini",".wcx",".wcx64",".wfx",".wfx64",".wdx",".wdx64",".wlx",".wlx64"};  
 			public boolean accept(final File dir, final String name) {
-				return name.endsWith(".md") || name.endsWith(".properties") || name.endsWith(".txt");
+				for (String ext: nonResources) {
+					if (name.endsWith(ext)) {
+						return false;
+					}
+				}
+				return true;
 			}
 		});
 		for (File otherFile: otherFiles) {
-			addOtherFile(otherFile);
+			if (!otherFile.isDirectory()) {
+				addOtherFile(otherFile);
+			}
 		}
 	}
 
@@ -266,16 +285,14 @@ public class PluginClassLoader extends ClassLoader {
 	 * @see java.lang.ClassLoader#getResource(java.lang.String)
 	 */
 	public final URL getResource(final String name) {
+		URL url = super.getResource(name);
+		if (url == null) {
+			url = urls.get(name);
+		}
 		if (log.isDebugEnabled()) {
 			log.debug("getResource: name=[" + name + "];URL=[" + urls.get(name) +"]");
 		}
-		return urls.get(name);
-		/*
-		if (name.endsWith(".class")) {
-			String className = getClassName(name);
-			return classes.get(className);
-		}
-		*/
+		return url;
 	}
 
 	/**
@@ -288,15 +305,23 @@ public class PluginClassLoader extends ClassLoader {
 	 *             resource is not found
 	 */
 	protected final Enumeration<URL> findResources(final String name) throws IOException {
-		List<URL> result = new ArrayList<URL>(Collections.list(super.findResources(name)));
-		if (log.isDebugEnabled()) {
-			log.debug("findResources: name="+ name + "];URL=[" + urls.get(name) +"];superFindResources:"+result.size());
-		}
-		URL url = getResource(name);
+		List<URL> result = new ArrayList<URL>();
+		URL url = urls.get(name);
 		if (url != null) {
 			result.add(url);
 		}
+		if (log.isDebugEnabled()) {
+			log.debug("findResources: name="+ name + "];URL=[" + url +"]");
+		}
 		return Collections.enumeration(result);
+	}
+
+	protected final URL findResource(final String name) {
+		URL url = urls.get(name);
+		if (log.isDebugEnabled()) {
+			log.debug("findResource: name="+ name + "];URL=[" + url +"]");
+		}
+		return url;
 	}
 
 	/**
@@ -452,7 +477,7 @@ public class PluginClassLoader extends ClassLoader {
 	private void addOtherFile(final JarFile jar, final JarEntry entry)
 			throws IOException {
 		if (log.isDebugEnabled()) {
-			log.debug("addOtherFile 1: jar=["+jar.getName()+"];entry["+entry+"]");
+			log.debug("addOtherFile: jar=["+jar.getName()+"];entry["+entry+"]");
 		}
 		others.put(entry.getName(), getFileBytes(jar, entry));
 		addUrl(jar, entry);
@@ -461,7 +486,7 @@ public class PluginClassLoader extends ClassLoader {
 	private void addOtherFile(File file)
 			throws IOException {
 		if (log.isDebugEnabled()) {
-			log.debug("addOtherFile 2: file=["+file+"]");
+			log.debug("addOtherFile: file=["+file+"]");
 		}
 		others.put(file.getName(), getFileBytes(file));
 		addUrl(file);

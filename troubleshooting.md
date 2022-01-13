@@ -153,10 +153,8 @@ Issues and things to-do
 This is a work in progress. **Help wanted!** - in particular with Visual C++ issues.
  - Refer to [things to do](https://github.com/moisescastellano/tcmd-java-plugin/blob/main/to-do.md) for work in progress.
  - Check also the [issues page](https://github.com/moisescastellano/tcmd-java-plugin/issues).
- - [Plugins based on this interface](https://github.com/moisescastellano/tcmd-java-plugin/blob/main/examples_64bit.md) have their own to-do page:
-   - [JavaDecompiler issues page] https://github.com/moisescastellano/javadecompiler-tcplugin/issues
-   - [DiskDirCrc issues page] https://github.com/moisescastellano/diskdircrc-tcplugin
-
+ - [Plugins based on this interface](https://github.com/moisescastellano/tcmd-java-plugin/blob/main/examples_64bit.md) have their own to-do and issues pages
+ 
 Contact
 --------------------
 Let me know if you have any comment, suggestion or problem regarding this java plugin, 

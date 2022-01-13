@@ -90,7 +90,7 @@ public class PluginClassLoader extends ClassLoader {
 	 */
 	private static final PluginClassLoader ROOT_CL = new PluginClassLoader();
 
-	private static final int[] versionNumber = {2,3,0}; // 2.3.0
+	private static final int[] versionNumber = {2,3,1}; // v2.3.1
 	private static final String version = versionNumber[0] + "." + versionNumber[1] + "." + versionNumber[2]; 
 	
 	public static int[] getVersionNumber() {
@@ -205,10 +205,14 @@ public class PluginClassLoader extends ClassLoader {
 			log.debug("PluginClassLoader: libName="+libName);
 		}
 		File tcLib = new File(libName);
-		String cwd = tcLib.getParentFile().getAbsolutePath();
-		this.pluginDirectory = cwd;
+		File cwd = tcLib.getParentFile();
+		this.pluginDirectory = cwd.getAbsolutePath();
 		this.fLibName = tcLib.getName();
 		configureFromDirectory(cwd);
+		File pluginLib = new File(cwd, "pluginlib");
+		if (pluginLib.exists()) {
+			configureFromDirectory(pluginLib); // for plugins with lots of jars, we dont want them on plugin dir
+		}
 	}
 
 	/**
@@ -220,8 +224,12 @@ public class PluginClassLoader extends ClassLoader {
 	 *             I/O exception
 	 */
 	private void configureFromDirectory(final String cwd) throws IOException {
-		log.debug("configureFromDirectory: cwd="+cwd);
 		File dir = new File(cwd);
+		configureFromDirectory(dir);
+	}
+	
+	private void configureFromDirectory(final File dir) throws IOException {
+		log.debug("configureFromDirectory: dir="+dir);
 		String[] files = dir.list(new FilenameFilter() {
 			/**
 			 * {@inheritDoc}
@@ -232,7 +240,7 @@ public class PluginClassLoader extends ClassLoader {
 
 		});
 		for (int i = 0; i < files.length; i++) {
-			JarFile file = new JarFile(new File(cwd, files[i]));
+			JarFile file = new JarFile(new File(dir, files[i]));
 			addJar(file);
 		}
 		

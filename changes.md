@@ -1,18 +1,24 @@
 Java Plugin Interface - history of changes
 ==========================================
 
-v2.3 - to be released 2022-jan-xx
-----------------
-- src\vc-project: configured for compiling 64bit version, [provided by Ghisler author of TC](https://www.ghisler.ch/board/viewtopic.php?p=408040#p408040)
+v2.3 - 2022-jan-14
+------------------
+
+- New [Troubleshooting guide for Java plugins](https://moisescastellano.github.io/tcmd-java-plugin/troubleshooting) added
+- Javalib folder now hosts last version of tc-classloader-x.x.x.jar 
+  - Refer to Troubleshooting guide: "In case you have more than one Java plugin installed" section
 - PluginClassLoader changes:
   - new method getVersionNumber to avoid problems when multiple java plugins are installed with different javalib versions
   - define package for classes so that getpackage call (e.g. from Tika libraries) does not fail
   - resource files (such as configuration yamls) in plugin directory are now available as resourceStream (getResourceAsStream)
-- There are now 22 [plugins based on the Java interface](https://moisescastellano.github.io/tcmd-java-plugin/examples_64bit):
-	- DiskDirCrc, JavaDecompiler, ThousandTypesPreview
+- There are now 21 [plugins based on the Java interface](https://moisescastellano.github.io/tcmd-java-plugin/examples_64bit):
+	- [DiskDirCrc](https://github.com/moisescastellano/diskdircrc-tcplugin)
+	- [JavaDecompiler](https://github.com/moisescastellano/javadecompiler-tcplugin)
 	- The 19 original examples by Ken Handel
 - Issue "JRE not found" was solved and documented in main README.md
   - for more info refer to JavaDecompiler [issues page](https://github.com/moisescastellano/javadecompiler-tcplugin/issues/1)
+- errormessages.ini added to (new) resources folder
+  - corrected typos on english and german messages
 
 v2.2 - 2021-dec-30
 ------------------

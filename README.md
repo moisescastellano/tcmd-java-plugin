@@ -40,18 +40,20 @@ Download and resources
 - History of [changes](https://github.com/moisescastellano/tcmd-java-plugin/blob/main/changes.md)
 - Thread for [converting java based plugins to 64-bit](https://www.ghisler.ch/board/viewtopic.php?t=75726) at the TC forum
 
-Java plugin - JRE related issues
-----------------------
-This interface and all derived plugins are written in Java, so you need to have installed a [Java Runtime Environment (JRE)](https://www.java.com/en/download/manual.jsp).
 
-Note 1: if you get a _**Java Runtime Environment is not installed on this Computer**_ error, and you have it installed, check the [response to this issue](https://github.com/moisescastellano/javadecompiler-tcplugin/issues/1). In short:
-add these 2 properties to the [JVM] section in the _tc_javaplugin.ini_  file, changing the paths to your JRE install dir:
-```
-JVM_DLL=c:\Program Files\Java\jre1.8.0_311\bin\server\jvm.dll
-JVM_HOME=c:\Program Files\Java\jre1.8.0_311
-```
+Troubleshooting guide
+-----------------------------------
 
-Note 2: [**OpenJDK versions have been reported to fail**](https://github.com/moisescastellano/tcmd-java-plugin/issues/2) when the plugin tries to start the JVM. By now, recommendation is to install an Oracle (Sun) JDK/JRE version. Java plugin interface and derived plugins like [JavaDecompiler](https://moisescastellano.github.io/javadecompiler-tcplugin/) and [DiskDirCrc](https://moisescastellano.github.io/diskdircrc-tcplugin/) have been tested on **Oracle (Sun) JRE 1.8**  (jre-8u311-windows-x64.exe).
+This interface and all derived plugins are written in Java, so you need to have installed a [Java Runtime Environment (JRE)](https://www.java.com/en/download/manual.jsp). The Java plugin interface and derived plugins were tested on **Oracle (Sun) JRE 1.8**  (jre-8u311-windows-x64.exe).
+
+In case you have any of the following issues, refer to the [Troubleshooting guide](https://moisescastellano.github.io/tcmd-java-plugin/troubleshooting)
+- [In case you have more than one Java plugin installed](troubleshooting#In-case-you-have-more-than-one-Java-plugin-installed)
+- [Error *Java Runtime Environment is not installed on this Computer*](troubleshooting#Error-Java-Runtime-Environment-is-not-installed-on-this-Computer)
+- [Error *LoadLibrary Failed*](troubleshooting#Error-LoadLibrary-Failed)
+- [Error *Starting Java Virtual Machine failed*](troubleshooting#Error-Starting-Java-Virtual-Machine-failed)
+- [Error *Class not found class='tcclassloader/PluginClassLoader'*](troubleshooting#Error-Class-not-found-class-tcclassloader/PluginClassLoader)
+- [Error *Initialization failed in class...*](troubleshooting#Error-Initialization-failed-in-class)
+- [Error *Exception in class 'tcclassloader/PluginClassLoader'*](troubleshooting#Error-Exception-in-class-tcclassloader/PluginClassLoader)
 
 Issues and things to-do
 ----------------------

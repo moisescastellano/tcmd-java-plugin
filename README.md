@@ -47,13 +47,13 @@ Troubleshooting guide
 This interface and all derived plugins are written in Java, so you need to have installed a [Java Runtime Environment (JRE)](https://www.java.com/en/download/manual.jsp). The Java plugin interface and derived plugins were tested on **Oracle (Sun) JRE 1.8**  (jre-8u311-windows-x64.exe).
 
 In case you have any of the following issues, refer to the [Troubleshooting guide](https://moisescastellano.github.io/tcmd-java-plugin/troubleshooting)
-- [In case you have more than one Java plugin installed](troubleshooting#In-case-you-have-more-than-one-Java-plugin-installed)
-- [Error *Java Runtime Environment is not installed on this Computer*](troubleshooting#Error-Java-Runtime-Environment-is-not-installed-on-this-Computer)
-- [Error *LoadLibrary Failed*](troubleshooting#Error-LoadLibrary-Failed)
-- [Error *Starting Java Virtual Machine failed*](troubleshooting#Error-Starting-Java-Virtual-Machine-failed)
-- [Error *Class not found class='tcclassloader/PluginClassLoader'*](troubleshooting#Error-Class-not-found-class-tcclassloader/PluginClassLoader)
-- [Error *Initialization failed in class...*](troubleshooting#Error-Initialization-failed-in-class)
-- [Error *Exception in class 'tcclassloader/PluginClassLoader'*](troubleshooting#Error-Exception-in-class-tcclassloader/PluginClassLoader)
+- [In case you have more than one Java plugin installed](troubleshooting.md#In-case-you-have-more-than-one-Java-plugin-installed)
+- [Error *Java Runtime Environment is not installed on this Computer*](troubleshooting.md#Error-Java-Runtime-Environment-is-not-installed-on-this-Computer)
+- [Error *LoadLibrary Failed*](troubleshooting.md#Error-LoadLibrary-Failed)
+- [Error *Starting Java Virtual Machine failed*](troubleshooting.md#Error-Starting-Java-Virtual-Machine-failed)
+- [Error *Class not found class='tcclassloader/PluginClassLoader'*](troubleshooting.md#Error-Class-not-found-class-tcclassloader/PluginClassLoader)
+- [Error *Initialization failed in class...*](troubleshooting.md#Error-Initialization-failed-in-class)
+- [Error *Exception in class 'tcclassloader/PluginClassLoader'*](troubleshooting.md#Error-Exception-in-class-tcclassloader/PluginClassLoader)
 
 Issues and things to-do
 ----------------------

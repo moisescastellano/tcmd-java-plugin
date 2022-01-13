@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -44,7 +45,7 @@ public class PluginClassLoader extends ClassLoader {
 	/**
 	 * This is the I/O buffer size.
 	 */
-	private static final int BUFFER_SIZE = 1024;
+	private static final int BUFFER_SIZE = 8*1024;
 
 	/**
 	 * A hash map with all classes of the jar files.
@@ -89,6 +90,17 @@ public class PluginClassLoader extends ClassLoader {
 	 */
 	private static final PluginClassLoader ROOT_CL = new PluginClassLoader();
 
+	private static final int[] versionNumber = {2,3,0}; // 2.3.0
+	private static final String version = versionNumber[0] + "." + versionNumber[1] + "." + versionNumber[2]; 
+	
+	public static int[] getVersionNumber() {
+		return versionNumber;
+	}
+	
+	public static String getVersion() {
+		return version;
+	}
+	
 	/**
 	 * Called by native code: Get the Java plugin instance of the Total
 	 * Commander plugin library.
@@ -223,6 +235,23 @@ public class PluginClassLoader extends ClassLoader {
 			JarFile file = new JarFile(new File(cwd, files[i]));
 			addJar(file);
 		}
+		
+		File[] otherFiles = dir.listFiles(new FilenameFilter() {
+			private String[] nonResources = new String[] {".jar",".zip",".ini",".wcx",".wcx64",".wfx",".wfx64",".wdx",".wdx64",".wlx",".wlx64"};  
+			public boolean accept(final File dir, final String name) {
+				for (String ext: nonResources) {
+					if (name.endsWith(ext)) {
+						return false;
+					}
+				}
+				return true;
+			}
+		});
+		for (File otherFile: otherFiles) {
+			if (!otherFile.isDirectory()) {
+				addOtherFile(otherFile);
+			}
+		}
 	}
 
 	/**
@@ -256,16 +285,14 @@ public class PluginClassLoader extends ClassLoader {
 	 * @see java.lang.ClassLoader#getResource(java.lang.String)
 	 */
 	public final URL getResource(final String name) {
+		URL url = super.getResource(name);
+		if (url == null) {
+			url = urls.get(name);
+		}
 		if (log.isDebugEnabled()) {
 			log.debug("getResource: name=[" + name + "];URL=[" + urls.get(name) +"]");
 		}
-		return urls.get(name);
-		/*
-		if (name.endsWith(".class")) {
-			String className = getClassName(name);
-			return classes.get(className);
-		}
-		*/
+		return url;
 	}
 
 	/**
@@ -278,15 +305,23 @@ public class PluginClassLoader extends ClassLoader {
 	 *             resource is not found
 	 */
 	protected final Enumeration<URL> findResources(final String name) throws IOException {
-		List<URL> result = new ArrayList<URL>(Collections.list(super.findResources(name)));
-		if (log.isDebugEnabled()) {
-			log.debug("findResources: name="+ name + "];URL=[" + urls.get(name) +"];superFindResources:"+result.size());
-		}
-		URL url = getResource(name);
+		List<URL> result = new ArrayList<URL>();
+		URL url = urls.get(name);
 		if (url != null) {
 			result.add(url);
 		}
+		if (log.isDebugEnabled()) {
+			log.debug("findResources: name="+ name + "];URL=[" + url +"]");
+		}
 		return Collections.enumeration(result);
+	}
+
+	protected final URL findResource(final String name) {
+		URL url = urls.get(name);
+		if (log.isDebugEnabled()) {
+			log.debug("findResource: name="+ name + "];URL=[" + url +"]");
+		}
+		return url;
 	}
 
 	/**
@@ -305,6 +340,18 @@ public class PluginClassLoader extends ClassLoader {
 	public final int hashCode() {
 		return getParent().hashCode();
 	}
+	
+    protected final Class<?> defineClass(String name, byte[] b, int len) throws ClassFormatError {        
+    	int i = name.lastIndexOf('.');
+        if (i != -1) {
+            String pkgname = name.substring(0, i);
+            if (getPackage(pkgname) == null) {
+            	definePackage(pkgname, null, null, null, null, null, null, null);
+            }
+        }
+        return defineClass(name, b, 0, len, null);
+    }
+
 
 	/**
 	 * Find class in jar files.
@@ -322,7 +369,7 @@ public class PluginClassLoader extends ClassLoader {
 		}
 		byte[] data = findClassData(name);
 		if (data != null) {
-			return defineClass(name, data, 0, data.length);
+			return defineClass(name, data, data.length);
 		} else {
 			throw new ClassNotFoundException(name);
 		}
@@ -409,6 +456,14 @@ public class PluginClassLoader extends ClassLoader {
 		urls.put(entry.getName(), new URL(url));
 	}
 	
+	private void addUrl(final File file) throws MalformedURLException {
+		String url = "file:/" + file.getName(); 
+		if (log.isDebugEnabled()) {
+			log.debug("addUrl: file=["+file+"]");
+		}
+		urls.put(file.getName(), new URL(url));
+	}
+
 	/**
 	 * Add other resource file to classes.
 	 * 
@@ -426,6 +481,15 @@ public class PluginClassLoader extends ClassLoader {
 		}
 		others.put(entry.getName(), getFileBytes(jar, entry));
 		addUrl(jar, entry);
+	}
+
+	private void addOtherFile(File file)
+			throws IOException {
+		if (log.isDebugEnabled()) {
+			log.debug("addOtherFile: file=["+file+"]");
+		}
+		others.put(file.getName(), getFileBytes(file));
+		addUrl(file);
 	}
 
 	/**
@@ -460,6 +524,22 @@ public class PluginClassLoader extends ClassLoader {
 		ByteArrayOutputStream stream = new ByteArrayOutputStream((int) entry.getSize());
 		byte[] buf = new byte[BUFFER_SIZE];
 		BufferedInputStream in = new BufferedInputStream(jar.getInputStream(entry));
+		int count;
+		while ((count = in.read(buf)) > -1) {
+			stream.write(buf, 0, count);
+		}
+		in.close();
+		stream.close();
+		return stream.toByteArray();
+	}
+
+	private static byte[] getFileBytes(File file) throws IOException {
+		if (log.isDebugEnabled()) {
+			log.debug("getFileBytes: file=[" + file + "]");
+		}
+		ByteArrayOutputStream stream = new ByteArrayOutputStream((int)file.length());
+		byte[] buf = new byte[BUFFER_SIZE];
+		BufferedInputStream in = new BufferedInputStream(new FileInputStream(file));
 		int count;
 		while ((count = in.read(buf)) > -1) {
 			stream.write(buf, 0, count);

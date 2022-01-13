@@ -11,9 +11,9 @@ Table of Contents
 - [Error *Java Runtime Environment is not installed on this Computer*](#Error-Java-Runtime-Environment-is-not-installed-on-this-Computer)
 - [Error *LoadLibrary Failed*](#Error-LoadLibrary-Failed)
 - [Error *Starting Java Virtual Machine failed*](#Error-Starting-Java-Virtual-Machine-failed)
-- [Error *Class not found class='tcclassloader/PluginClassLoader'*](#Error-Class-not-found-class-'tcclassloader/PluginClassLoader)
-- [Error *Initialization failed in class...*](#Error-Initialization-failed-in-class...)
-- [Error *Exception in class 'tcclassloader/PluginClassLoader'*](#Error-Exception-in-class-'tcclassloader/PluginClassLoader')
+- [Error *Class not found class='tcclassloader/PluginClassLoader'*](#Error-Class-not-found-class-tcclassloader-PluginClassLoader)
+- [Error *Initialization failed in class...*](#Error-Initialization-failed-in-class)
+- [Error *Exception in class 'tcclassloader/PluginClassLoader'*](#Error-Exception-in-class-tcclassloader-PluginClassLoader)
 - [Issues and things to-do](#Issues-and-things-to-do)
 - [Contact](#Contact)
 

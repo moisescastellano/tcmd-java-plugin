@@ -7,15 +7,31 @@ Let me know whether this guide solves your problem or not - contact details belo
 Table of Contents
 -----------------
 
-- [In case you have more than one Java plugin installed](#In-case-you-have-more-than-one-Java-plugin-installed)
-- [Error *Java Runtime Environment is not installed on this Computer*](#Error-Java-Runtime-Environment-is-not-installed-on-this-Computer)
-- [Error *LoadLibrary Failed*](#Error-LoadLibrary-Failed)
-- [Error *Starting Java Virtual Machine failed*](#Error-Starting-Java-Virtual-Machine-failed)
-- [Error *Class not found class='tcclassloader/PluginClassLoader'*](#Error-Class-not-found-class-tcclassloader/PluginClassLoader)
-- [Error *Initialization failed in class...*](#Error-Initialization-failed-in-class)
-- [Error *Exception in class 'tcclassloader/PluginClassLoader'*](#Error-Exception-in-class-tcclassloader/PluginClassLoader)
-- [Issues and things to-do](#Issues-and-things-to-do)
-- [Contact](#Contact)
+- [In case you have more than one Java plugin installed](troubleshooting.md#In-case-you-have-more-than-one-Java-plugin-installed)
+- [Be sure you use the same (32/64) platform for JVM and TC](troubleshooting.md#Be-sure-you-use-the-same-(32/64)-platform-for-JVM-and-TC)
+- [In case you have both TCx64 and TCx32 installed](troubleshooting.md#In-case-you-have-both-TCx64-and-TCx32-installed)
+- [Error *Java Runtime Environment is not installed on this Computer*](troubleshooting.md#Error-Java-Runtime-Environment-is-not-installed-on-this-Computer)
+- [Error *LoadLibrary Failed*](troubleshooting.md#Error-LoadLibrary-Failed)
+- [Error *Starting Java Virtual Machine failed*](troubleshooting.md#Error-Starting-Java-Virtual-Machine-failed)
+- [Error *Class not found class='tcclassloader/PluginClassLoader'*](troubleshooting.md#Error-Class-not-found-class-tcclassloader/PluginClassLoader)
+- [Error *Initialization failed in class...*](troubleshooting.md#Error-Initialization-failed-in-class)
+- [Error *Exception in class 'tcclassloader/PluginClassLoader'*](troubleshooting.md#Error-Exception-in-class-tcclassloader/PluginClassLoader)
+- [Error *Access violation at address...*](troubleshooting.md#Error-Access-violation-at-address)
+- [Error *Crash in plugin ... Access violation at address...*](troubleshooting.md#Error-Crash-in-plugin-Access-violation-at-address)
+- [Issues and things to-do](troubleshooting.md#Issues-and-things-to-do)
+- [Contact](troubleshooting.md#Contact)
+
+Be sure you use the same (32/64) platform for JVM and TC
+--------------------------------------------------------
+
+This is, if you still use TC32 bits, the JVM should be a 32 bits version, and if you use TCx64, JVM should be a x64 bits version.
+For finding out the JVM/JRE the Java plugin using, refer to the [JRE section](#Java-Runtime-Environment-is-not-installed-on-this-Computer)
+You can change the JVM used by the Java plugin adding these 2 properties to the [JVM] section in the _tc_javaplugin.ini_  file, changing the paths to your JRE install dir:
+
+```
+JVM_DLL=c:\Program Files\Java\jre1.8.0_311\bin\server\jvm.dll
+JVM_HOME=c:\Program Files\Java\jre1.8.0_311
+```
 
 In case you have more than one Java plugin installed
 ------------------------------------------------------
@@ -25,6 +41,15 @@ In order to save CPU and memory resources, **every Java plugin is executed in th
 The drawback of this approach is that **configuration, such as libraries and properties, is shared between all the Java plugins**. The configuration of the first loaded plugin, specified in *tc_javaplugin.ini*, is used.
 
 In particular, be sure that the JAVA.CLASS.PATH variable in the JVM section of tc_javaplugin.ini points to a javalib directory with the last version of tc-classsloader-x.y.z.jar
+
+In case you have both TCx64 and TCx32 installed
+------------------------------------------
+
+If you have both TCx64 and TCx32 installed, plugins are installed under TCx64, but **javalib** is searched under %COMMANDER% variable, which TCx32 stablishes to its own dir. 
+
+This can be solved copying the plugin dir, including javalib, from TCx64 to TCx32.
+
+Then check above the "*Be sure you use the same (32/64) platform for JVM and TC*" section and modify the _tc_javaplugin.ini_ file accordingly.
 
 
 Error *Java Runtime Environment is not installed on this Computer*
@@ -143,9 +168,24 @@ If you have more java plugins installed, refer to [that section](#In-case-you-ha
 
 Error *Exception in class 'tcclassloader/PluginClassLoader'*
 ------------------------------------------------------
+
 Most probably another java plugin with and older version of PluginClassLoader has been loaded first.
 
 Refer to [In-case-you-have-more-than-one-Java-plugin-installed](#In-case-you-have-more-than-one-Java-plugin-installed) section.
+
+Error *Access violation at address...*
+-------------------------------------
+
+Most probably the Java plugin is using JVM 32 bits under a TCx64 bit or viceversa.
+
+Check above the "*Be sure you use the same (32/64) platform for JVM and TC*" section and modify the _tc_javaplugin.ini_ file accordingly.
+
+Error *Crash in plugin ... Access violation at address...*
+-------------------------------------
+
+Most probably the Java plugin is using JVM 32 bits under a TCx64 bit or viceversa.
+
+Check above the "*Be sure you use the same (32/64) platform for JVM and TC*" section and modify the _tc_javaplugin.ini_ file accordingly.
 
 
 Issues and things to-do

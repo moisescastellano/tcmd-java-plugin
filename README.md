@@ -48,12 +48,16 @@ This interface and all derived plugins are written in Java, so you need to have 
 
 In case you have any of the following issues, refer to the [Troubleshooting guide](https://moisescastellano.github.io/tcmd-java-plugin/troubleshooting)
 - [In case you have more than one Java plugin installed](troubleshooting.md#In-case-you-have-more-than-one-Java-plugin-installed)
+- [Be sure you use the same (32/64) platform for JVM and TC](troubleshooting.md#Be-sure-you-use-the-same-(32/64)-platform-for-JVM-and-TC)
+- [In case you have both TCx64 and TCx32 installed](troubleshooting.md#In-case-you-have-both-TCx64-and-TCx32-installed)
 - [Error *Java Runtime Environment is not installed on this Computer*](troubleshooting.md#Error-Java-Runtime-Environment-is-not-installed-on-this-Computer)
 - [Error *LoadLibrary Failed*](troubleshooting.md#Error-LoadLibrary-Failed)
 - [Error *Starting Java Virtual Machine failed*](troubleshooting.md#Error-Starting-Java-Virtual-Machine-failed)
 - [Error *Class not found class='tcclassloader/PluginClassLoader'*](troubleshooting.md#Error-Class-not-found-class-tcclassloader/PluginClassLoader)
 - [Error *Initialization failed in class...*](troubleshooting.md#Error-Initialization-failed-in-class)
 - [Error *Exception in class 'tcclassloader/PluginClassLoader'*](troubleshooting.md#Error-Exception-in-class-tcclassloader/PluginClassLoader)
+- [Error *Access violation at address...*](troubleshooting.md#Error-Access-violation-at-address)
+- [Error *Crash in plugin ... Access violation at address...*](troubleshooting.md#Error-Crash-in-plugin-Access-violation-at-address)
 
 Issues and things to-do
 ----------------------

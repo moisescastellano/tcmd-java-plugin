@@ -40,7 +40,7 @@ In order to save CPU and memory resources, **every Java plugin is executed in th
 
 The drawback of this approach is that **configuration, such as libraries and properties, is shared between all the Java plugins**. The configuration of the first loaded plugin, specified in *tc_javaplugin.ini*, is used.
 
-In particular, be sure that the JAVA.CLASS.PATH variable in the JVM section of tc_javaplugin.ini points to a javalib directory with the last version of tc-classsloader-x.y.z.jar
+In particular, be sure that the JAVA.CLASS.PATH variable in the JVM section of **every _[plugin]/tc_javaplugin.ini_ points to a javalib directory** with the [last version of tc-classsloader-x.y.z.jar](https://github.com/moisescastellano/tcmd-java-plugin/tree/main/javalib)
 
 In case you have both TCx64 and TCx32 installed
 ------------------------------------------

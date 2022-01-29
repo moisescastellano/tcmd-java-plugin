@@ -90,7 +90,7 @@ public class PluginClassLoader extends ClassLoader {
 	 */
 	private static final PluginClassLoader ROOT_CL = new PluginClassLoader();
 
-	private static final int[] versionNumber = {2,3,1}; // v2.3.1
+	private static final int[] versionNumber = {2,3,2}; // v2.3.2
 	private static final String version = versionNumber[0] + "." + versionNumber[1] + "." + versionNumber[2]; 
 	
 	public static int[] getVersionNumber() {
@@ -293,12 +293,12 @@ public class PluginClassLoader extends ClassLoader {
 	 * @see java.lang.ClassLoader#getResource(java.lang.String)
 	 */
 	public final URL getResource(final String name) {
-		URL url = super.getResource(name);
+		URL url = urls.get(name);
 		if (url == null) {
-			url = urls.get(name);
+			url = super.getResource(name);
 		}
 		if (log.isDebugEnabled()) {
-			log.debug("getResource: name=[" + name + "];URL=[" + urls.get(name) +"]");
+			log.debug("getResource: name=[" + name + "];URL=[" + urls.get(name) + "]");
 		}
 		return url;
 	}
@@ -319,7 +319,7 @@ public class PluginClassLoader extends ClassLoader {
 			result.add(url);
 		}
 		if (log.isDebugEnabled()) {
-			log.debug("findResources: name="+ name + "];URL=[" + url +"]");
+			log.debug("findResources: name=[" + name + "];URL=[" + url + "]");
 		}
 		return Collections.enumeration(result);
 	}
@@ -327,7 +327,7 @@ public class PluginClassLoader extends ClassLoader {
 	protected final URL findResource(final String name) {
 		URL url = urls.get(name);
 		if (log.isDebugEnabled()) {
-			log.debug("findResource: name="+ name + "];URL=[" + url +"]");
+			log.debug("findResource: name=[" + name + "];URL=[" + url + "]");
 		}
 		return url;
 	}
@@ -465,11 +465,8 @@ public class PluginClassLoader extends ClassLoader {
 	}
 	
 	private void addUrl(final File file) throws MalformedURLException {
-		String url = "file:/" + file.getName(); 
-		if (log.isDebugEnabled()) {
-			log.debug("addUrl: file=["+file+"]");
-		}
-		urls.put(file.getName(), new URL(url));
+		if (log.isDebugEnabled()) {	log.debug("addUrl: file=["+file+"], url=[" +  file.toURI().toURL() + "]"); }
+		urls.put(file.getName(), file.toURI().toURL());
 	}
 
 	/**

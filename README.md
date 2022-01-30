@@ -89,6 +89,6 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” 
 
 License
 --------------------
-Licensed under under the GNU General Public License v3.0, a strong copyleft license:
+Licensed under the GNU General Public License v3.0, a strong copyleft license:
 https://github.com/moisescastellano/tcmd-java-plugin/blob/main/LICENSE
 

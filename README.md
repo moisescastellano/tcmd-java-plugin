@@ -5,7 +5,7 @@ This interface makes it possible to write Total Commander plugins (WLX, WFX, WDX
 The original Java Plugin is Copyright (C) 2006-2007 Ken Handel: 
 he also provided a lot of [java plugin examples](http://java.totalcmd.net/V1.7/examples.html) for any kind: lister, packer, file system and content, now [updated to 64-bit](https://github.com/moisescastellano/tcmd-java-plugin/blob/main/examples_64bit.md).
 
-However the developer abandoned the project in 2007 (now is 2021), and he has been unreachable since then (some people tried to reach him long ago). 64-bit versions of this plugin were no available, because as said the project was abandoned in 2007 and 64-bit tcmd came around 2011. That makes it unusable for most people, nowadays using 64-bit TC.
+However the developer abandoned the project in 2007 and he has been unreachable since then (some people tried to reach him long ago). 64-bit versions of this plugin were no available, because as said the project was abandoned in 2007 and 64-bit tcmd came around 2011. That makes it unusable for most people, nowadays using 64-bit TC.
 
 As the license allows so, we have undertaken the project;
 special thanks to Ghisler (author of TC) for recompiling the dll:
@@ -21,15 +21,22 @@ Now, every java plugin:
  
 ### [DiskDirCrc](https://github.com/moisescastellano/diskdircrc-tcplugin)
 
-[DiskDirCrc](https://github.com/moisescastellano/diskdircrc-tcplugin) is the first java plugin of my own, you can [download it here](https://github.com/moisescastellano/diskdircrc-tcplugin/tree/main/releases).
-
 As the original DiskDir plugin, DiskDirCrc creates a list file with all selected files and directories, including subdirs. You can then "navigate" this list with Total Commander as if it was an archive or directory containing the files.
 
-DiskDirCrc also calculates the CRC of the files and writes them into the index file. CRC is an error-detecting code commonly used in digital storage devices to detect accidental changes to data. DiskDirCrc can then check (Alt+Shift+F9) the integrity of files comparing the CRC in the list.
+DiskDirCrc also calculates the CRC of the files and writes them into the index file. CRC is an error-detecting code commonly used in digital storage devices to detect accidental changes to data. **DiskDirCrc can then check (Alt+Shift+F9) the integrity of files comparing the CRC in the list**.
 
 ### [JavaDecompiler](https://moisescastellano.github.io/javadecompiler-tcplugin/)
 
 This plugin allows Total Commander to both **decompile** and **navigate** java *.class* files. It is a packer plugin, meaning you can "enter" these files as archives. 
+
+### [ThousandTypes](https://github.com/moisescastellano/thousandTypes-tcplugin)
+
+Have you ever being checking what's inside of a lot of documents such as PDFs or .doc files, 
+spending a lot of time waiting for a new Acrobat Reader, MS-Word or Whatever-program to open, just to close it and continuing the process?
+
+Have you ever wondered what a particular file contained and wanted to take a look at its contents, not having the associated application to open it?
+
+This plugin allows TC to show a very quick text preview of almost **every file format**.
 
 Download and resources
 --------------------

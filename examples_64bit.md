@@ -29,6 +29,27 @@ It is not, .class files do NOT contain other files. However this plugin "hacks" 
  
 The plugin uses CFR 0.152 decompiler as a library, so it does not need any extra executables or processes.
 
+## [ThousandTypes](https://github.com/moisescastellano/thousandTypes-tcplugin)
+
+Have you ever being checking what's inside of a lot of documents such as PDFs or .doc files, 
+spending a lot of time waiting for a new Acrobat Reader, MS-Word or Whatever-program to open, just to close it and continuing the process?
+
+Have you ever wondered what a particular file contained and wanted to take a look at its contents, not having the associated application to open it?
+
+This plugin allows TC to show a very quick text preview of almost **every file format**.
+
+The **packer version of the plugin** allows Total Commander to **very quickly** "enter" (ctrl + pgDown) docs as if they were archives or folders. 
+
+In that "simulated folder" you can see at a glance:
+ - a plain-text preview (or whole contents) of the document, that you can then view (F3) or extract (F5)
+ - document metadata: author, version, creator tool...
+ - first lines preview of the contents shown as file names, so that you dont even have to open any file in the folder
+
+This info is shown as file names, so that you can have a very quick preview, and then if needed extract to a file or view the complete document's metadata or contents.
+
+![ThousandTypes screenshot](https://github.com/moisescastellano/thousandTypes-tcplugin/raw/main/screenshots/thousandTypes_packer-plugin.png)
+
+
 # Original examples by Ken Handel
 
 Now, every java plugin work as an independent (no need to install javalib.tgz) 64-bit plugin in TC64\. They still work in TC32. 
